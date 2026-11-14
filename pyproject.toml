@@ -1,0 +1,6 @@
+[project]
+name = "lithography-stepper-3d-cad"
+version = "0.1.0"
+description = "Code-driven CAD for the printed parts of the lithography stepper"
+requires-python = ">=3.11,<3.13"
+dependencies = ["build123d>=0.13", "trimesh>=4", "numpy"]
