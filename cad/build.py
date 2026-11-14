@@ -10,7 +10,7 @@ from build123d import Pos, Rot, export_step, export_stl
 
 from .parts import (adapter_plate, baffle_ring, beamsplitter_holder, board_rail,
                     camera_clamp, camera_sleeve, chip_holder, projector_bracket,
-                    stage_platform, test_piece, tube_clamp)
+                    stage_base, test_piece, tube_clamp)
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -28,7 +28,7 @@ PARTS = {
     "05_baffle_ring": (baffle_ring.build, baffle_ring.PRINT_ROT),
     "06_board_rail": (board_rail.build, board_rail.PRINT_ROT),
     "07_chip_holder": (chip_holder.build, chip_holder.PRINT_ROT),
-    "08_stage_platform": (stage_platform.build, stage_platform.PRINT_ROT),
+    "08_stage_base": (stage_base.build, stage_base.PRINT_ROT),
 }
 
 

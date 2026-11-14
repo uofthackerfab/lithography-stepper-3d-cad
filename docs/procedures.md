@@ -1,39 +1,6 @@
 # Procedures
 
-## 1. Print the test piece
-
-1. Open `stl/00_test_piece.stl` in the slicer.
-2. Use the material that you will use for the beamsplitter holder.
-3. Apply the settings in [parts.md](parts.md).
-4. Slice the part. Make sure that the slicer adds no supports.
-5. Print the part.
-
-## 2. Read the test piece
-
-The test piece has three round holes. Notches on the edge identify them.
-
-| Notches | Hole diameter |
-|---|---|
-| 1 | 30.6 mm |
-| 2 | 30.7 mm |
-| 3 | 30.8 mm |
-
-1. Push an SM1 lens tube into each round hole.
-2. Record the smallest hole that the tube enters without force.
-3. Put the beamsplitter cube into the square pocket (30.3 mm). Hold the cube by its rough faces.
-4. Record the result: loose, correct, or does not enter.
-5. Put an M5 screw through the small round hole. Put an M3 nut into the hexagonal pocket.
-6. Record the fit of the screw and the nut.
-
-## 3. Apply the result
-
-1. Open `cad/params.py`.
-2. Set `TUBE_BORE` to the hole diameter from step 2.2.
-3. If the cube did not enter, increase `CUBE_POCKET` by 0.2. If the cube was loose, decrease it by 0.1.
-4. Run `uv run python -m cad.build`.
-5. Make sure that each line shows `OK`.
-
-## 4. Print the parts
+## 1. Print the parts
 
 1. Open the STL files in the slicer. Do not turn the parts.
 2. Set the quantity of each part. Refer to [parts.md](parts.md).
@@ -44,29 +11,74 @@ The test piece has three round holes. Notches on the edge identify them.
    - The slicer added no supports.
 6. Print the parts.
 
-## 5. Assemble the frame
+## 2. Examine the fits
 
-CAUTION: The projector is at the top of the frame. A narrow base can fall over. Make sure that the frame is stable before you install the optics.
+1. Close the two halves of the beamsplitter holder on a lens tube. A seam gap of less than 0.5 mm is satisfactory.
+2. Put the cube into the base half. Hold the cube by its rough faces. Push lightly. The ribs hold the cube.
+3. If a fit is incorrect, change the value in `cad/params.py` and build the part again.
+
+| Fault | Value to change |
+|---|---|
+| Seam gap is larger than 0.5 mm | Increase `TUBE_BORE` by 0.2 |
+| Tube is loose in a closed holder | Decrease `TUBE_BORE` by 0.1 |
+| Cube does not enter | Decrease `CUBE_RIB` by 0.1 |
+| Cube is loose | Increase `CUBE_RIB` by 0.1 |
+| Sleeve does not enter the camera block | Increase `SLEEVE_BORE` by 0.2 |
+
+The test piece (`00_test_piece.stl`) is optional. It has holes of 30.6, 30.7 and 30.8 mm with 1, 2 and 3 notches. Use it to measure a printer before a long print.
+
+## 3. Assemble the frame
+
+The frame uses the four 500 mm bars:
+
+```
+   view from above                    view from the front
+
+   A ====[U]==[U]=========            U   U     two uprights, on bar A
+              |                       |   |
+              B                    ===A=========
+              |  (to the front)
+```
+
+- Bar A lies on the table, from left to right.
+- The two uprights (U) stand on bar A, at its centre.
+- Bar B lies on the table. It points to the front. It joins bar A to the right of the uprights.
 
 1. Put the two halves of the beamsplitter holder together. Their total thickness is 44 mm.
-2. Set the two uprights parallel, with the holder between them as a gauge.
-3. Attach the uprights to the base bars with corner brackets.
-4. Put T-nuts into the upright slots before you close the ends.
+2. Put the two uprights on bar A, with the holder between them as a gauge.
+3. Attach each upright to bar A with two corner brackets. Make sure that the front faces of the uprights and of bar A align.
+4. Attach bar B to the front face of bar A, 60 mm or more to the right of the right upright.
+5. Put T-nuts into the slots: 5 in each front slot of the uprights, 4 in each back slot, 2 in the inner slot of the left upright, and 2 in the front slot of bar A.
 
-The base layout is not final. One option: one base bar below the two uprights, and one base bar that points to the front.
+CAUTION: The frame falls to the rear if it tilts more than approximately 13°. Do not push the top of the frame to the rear.
 
-## 6. Install the parts
+## 4. Install the parts
 
 Install the parts from the top to the bottom. Tighten the frame screws only after all tubes align.
 
 1. Attach the adapter plate to the projector with four M2 screws. The countersinks point down.
 2. Look into the light hole. If the mirror chip is not in the centre, turn the plate 90° and do this step again.
-3. Attach the SM1A53 flange below the plate.
-4. Put the plate on the projector bracket. Attach it from below.
+3. Attach the SM1A53 flange below the plate with four M3 × 6 screws.
+4. Put the plate on the projector bracket. Turn the projector so that its larger part points to the front. Attach the plate from below.
 5. Bolt the base half of the beamsplitter holder to the inner face of the left upright.
 6. Put the cube, the tubes and the sleeve into the base half. Install the cover.
 7. Bolt the camera clamp block to the back faces of the uprights.
-8. Install the tube clamps, the board rails and the stage platform.
-9. Attach the chip holder to the end effector.
+8. Install the tube clamps and the board rails. Put the rails at a height where the projector cables reach the main board.
+9. Bolt the stage base to the front face of bar A, on the left. Put the micro-manipulator stand in the rim.
+10. Attach the chip holder to the end effector.
+
+Recommended lens tubes:
+
+| Arm | Parts, from the holder outward | Length |
+|---|---|---|
+| Objective (down) | SM1L10, SM1A3, objective | 26.2 mm to the objective shoulder |
+| Projector (up) | SM1L10, SM1V10, SM1A53 | adjustable: 45 to 66 mm |
+| Camera (back) | printed sleeve | 78 mm |
 
 CAUTION: The distance between the objective and the chip is 1.5 mm. Lift the stage slowly.
+
+## 5. Set the focus
+
+1. Move the stage in Z until the camera shows a sharp image of the chip.
+2. If the stage has no travel left, slide the camera in its saddle.
+3. Project a pattern. Turn the SM1V10 until the pattern is sharp on the camera.

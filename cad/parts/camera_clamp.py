@@ -15,8 +15,8 @@ Y_SADDLE = Y_RING + 12
 Y_END = Y_SADDLE + 40
 HALF_W = 42.0
 Z_BOT, Z_TOP = -37.0, 36.0
-CAP_W = 14.0
-CAP_Y = Y_SADDLE + 4        # front edge of the cap
+CAP_W = 10.0                # narrow: the cap stays in front of the camera ports
+CAP_Y = Y_SADDLE + 1        # front edge of the cap
 SCREW_X = 37.0              # M3 x 16
 
 
@@ -24,7 +24,7 @@ def block():
     part = box(-HALF_W, HALF_W, Y0, Y_END, Z_BOT, Z_TOP)
     part += box(-HALF_W, HALF_W, Y0, Y0 + P.FLANGE, Z_BOT - 20, Z_TOP + 20)   # flange
     part -= box(-HALF_W, HALF_W, Y_SADDLE, Y_END, 0, Z_TOP)                   # open the saddle
-    part -= cyl("y", P.TUBE_BORE, Y0, Y_RING)
+    part -= cyl("y", P.SLEEVE_BORE, Y0, Y_RING)
     part -= cyl("y", BORE, Y_RING, Y_END)
     part -= frame_slots(Y0, Y0 + P.FLANGE, [Z_BOT - 10, Z_TOP + 10])
     yc = CAP_Y + CAP_W / 2

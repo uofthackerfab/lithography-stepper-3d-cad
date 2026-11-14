@@ -9,7 +9,7 @@ DEPTH = 0.4                 # pocket depth; chip is 0.525
 
 
 def build():
-    h, c = SIZE / 2, (P.CHIP + 0.2) / 2
+    h, c = SIZE / 2, (P.CHIP + 0.4) / 2
     floor = T - DEPTH
     part = box(-h, h, -h, h, 0, T) - box(-c, c, -c, c, floor, T)
     part -= cyl("z", 12, 0, T, 0, -h)                  # finger notch

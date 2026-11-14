@@ -9,7 +9,7 @@ from ..shapes import box, cone, cyl, hexagon
 
 PRINT_ROT = (180, 0, 0)     # countersinks face up on the printer
 T = 6.0
-BRACKET_NUT = 4.0           # deep pockets: M3 x 12 screws stay below the top face
+NUT_DEPTH = 4.0             # deep pockets: the screw ends stay below the top face
 
 
 def build():
@@ -21,8 +21,8 @@ def build():
             part -= cyl("z", P.M2_HOLE, 0, T, x, y + P.DMD_OFFSET)
             part -= cone("z", P.M2_CSK, P.M2_HOLE, 0, (P.M2_CSK - P.M2_HOLE) / 2, x, y + P.DMD_OFFSET)
     r, b = P.SM1A53_BOLT_R, P.PLATE_BOLT
-    for x, y, depth in [(r, 0, P.M3_NUT_T), (-r, 0, P.M3_NUT_T), (0, r, P.M3_NUT_T), (0, -r, P.M3_NUT_T),
-                        (b, b, BRACKET_NUT), (b, -b, BRACKET_NUT), (-b, b, BRACKET_NUT), (-b, -b, BRACKET_NUT)]:
+    # SM1A53 flange: M3 x 6 (1.3 mm of flange under the head). Bracket: M3 x 12.
+    for x, y in [(r, 0), (-r, 0), (0, r), (0, -r), (b, b), (b, -b), (-b, b), (-b, -b)]:
         part -= cyl("z", P.M3_HOLE, 0, T, x, y)
-        part -= hexagon("z", T - depth, T, x, y)        # nuts on the projector side
+        part -= hexagon("z", T - NUT_DEPTH, T, x, y)    # nuts on the projector side
     return part

@@ -1,4 +1,7 @@
-"""Part 0. Test piece: three tube holes, one cube pocket, one M5 hole, one M3 nut pocket."""
+"""Part 0 (optional). Test piece: shows how accurate the printer is.
+
+Three tube holes, one 30.3 mm square for the cube, one M5 hole, one M3 nut pocket.
+"""
 from .. import params as P
 from ..shapes import box, cyl, hexagon
 

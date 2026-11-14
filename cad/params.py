@@ -1,11 +1,13 @@
 """All dimensions, in millimetres. Change a value here, then run the build again.
 
-Status of each value: [V] verified, [E] estimate, [T] set by the test piece.
+Status of each value: [V] verified, [E] estimate.
 """
 
-# --- Fits that the test piece sets [T] ---
-TUBE_BORE = 30.7        # hole for an SM1 tube (tube is 30.5 [V])
-CUBE_POCKET = 30.3      # square pocket for the 30 mm beamsplitter cube
+# --- Fits. Each one tolerates a printer error of +/- 0.2 ---
+TUBE_BORE = 30.7        # hole for an SM1 tube (tube is 30.5 [V]). Split parts close on the tube.
+SLEEVE_BORE = 31.0      # closed hole for the printed sleeve: loose
+CUBE_POCKET = 30.6      # pocket for the 30 mm cube; crush ribs take up the clearance
+CUBE_RIB = 0.3          # each rib stands this far into the pocket
 
 # --- Optics [V] ---
 TUBE_OD = 30.5          # Thorlabs SM1 lens tube, outside diameter
@@ -39,7 +41,7 @@ WALL = 4.0              # minimum wall
 M2_SQUARE = 28.0        # four M2 holes on a 28 x 28 square
 DMD_OFFSET = 2.9        # light bore is this far from the centre of the square
 LIGHT_BORE = 25.4
-SM1A53_BOLT_R = 18.385  # four M3 holes at 90 degrees. Hacker Fab value [E]
+SM1A53_BOLT_R = 18.385  # four M3 holes on a 26 x 26 square [V], Thorlabs drawing
 PLATE = 62.0            # adapter plate, square
 PLATE_BOLT = 26.0       # plate-to-bracket M3 holes at (+/-26, +/-26)
 

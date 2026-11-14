@@ -11,8 +11,9 @@ A slicer is the program that converts an STL file into printer instructions.
 ## Status
 
 - All 13 STL files are closed meshes and each one is smaller than 200 mm.
-- No part is printed or sliced yet. A fit is confirmed only after a test print.
-- Print `00_test_piece.stl` first. Its result sets two dimensions for all other parts.
+- A geometry check found no overhang that needs supports.
+- No part is printed yet. A fit is confirmed only after a print.
+- The fits tolerate a printer error of ±0.2 mm. The test piece is optional.
 
 ## Contents
 

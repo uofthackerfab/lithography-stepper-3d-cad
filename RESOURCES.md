@@ -24,6 +24,7 @@ Onshape element ids for the adapter plate: `0e8c1f104c4c4708545e72bb` (aluminium
 | TI Formatter Board design package | `dlpc145.zip` (the user has this file; drill file `DLP046B-1-10-np.drl`) |
 | ZWO ASI174MM product page | https://www.zwoastro.com/product/asi174mm-mono |
 | ZWO ASI174MM manual (drawing on page 17) | https://cdn.shopify.com/s/files/1/0652/6245/2965/files/ZWO-ASI174MM-Manual.pdf |
+| ZWO ASI174MM mechanical diagram | https://i.zwoastro.com/wp-content/uploads/2022/07/85140bf03e5491a08424460f8f8ba675.jpg |
 | ZWO ASI174MM manual (APM copy) | https://www.apm-telescopes.net/downloads/manuals/ASI174MM.pdf |
 | Edmund 10X DIN Plan objective, #43-907 | https://www.edmundoptics.com/p/10x-din-plan-commercial-grade-objective/5386/ |
 | Thorlabs SM1 tube catalogue page | https://thorlabs.com/catalogpages/V21/152.PDF |
@@ -34,7 +35,7 @@ Thorlabs drawings. Prefix each with `https://media.thorlabs.com/globalassets/ite
 
 | Part | Drawing |
 |---|---|
-| SM1A53 | `sm1a53/itn000795-e0w.pdf` |
+| SM1A53 | `sm1a53/itn000795-e0w.pdf` (STEP file: same name, `.step`) |
 | SM1L03 | `sm1l03/0823-e0w.pdf` |
 | SM1L05 | `sm1l05/0370-e0w.pdf` |
 | SM1L10 | `sm1l10/0371-e0w.pdf` |
@@ -77,6 +78,7 @@ Thorlabs drawings. Prefix each with `https://media.thorlabs.com/globalassets/ite
 | M3 screws and nuts, 550 pieces (Mywish) | https://www.amazon.ca/dp/B0DJP6C8MF |
 | M2 countersunk screws, 210 pieces (Hilitchi) | https://www.amazon.ca/dp/B06Y3M62Z8 |
 | Self-adhesive black felt, 10 sheets | https://www.amazon.ca/dp/B0CJJ9L17G |
+| Polyimide (Kapton) tape, for the chip | no link recorded |
 | Digital caliper, 150 mm | https://www.amazon.ca/dp/B07X8JQ8L5 |
 | Matte black PETG, 1 kg (SUNLU) | https://www.amazon.ca/dp/B0FD2ZKHND |
 
@@ -86,11 +88,13 @@ Thorlabs drawings. Prefix each with `https://media.thorlabs.com/globalassets/ite
 |---|---|
 | Open Micro-Manipulator repository | https://github.com/0x23/MicroManipulatorStepper |
 | Printable STL files | https://github.com/0x23/MicroManipulatorStepper/tree/main/construction/v4_3dprinting_stl |
+| Author's video (travel 23 mm, version 3) | https://youtu.be/MgQbPdiuUTw |
 | Stepwise project page | https://www.stepwisedocs.com/docs/projects/open-micro-manipulator-13 |
 | Stepwise bill of materials | https://www.stepwisedocs.com/docs/projects/open-micro-manipulator-13/guides/bill-of-materials-72 |
 | Stepwise rod manufacturing guide | https://www.stepwisedocs.com/docs/projects/open-micro-manipulator-13/guides/precision-ball-joints-rods-manufacturing-process-73 |
 | Stepwise assembly guide | https://www.stepwisedocs.com/docs/projects/open-micro-manipulator-13/guides/micro-manipulator-assembly-instructions-74 |
-| Optional printed stand (`demoStandV1.stl`) | https://github.com/koalazak/MicroManipulatorStepper/tree/stl-extras/construction/v4_3dprinting_stl/extras |
+| Stepper motor, 42 × 42 × 39 mm (3 in use) | https://www.amazon.ca/dp/B00W98OYE4 |
+| Printed stand (`demoStandV1.stl`). The stage base in this repository holds it. | https://github.com/koalazak/MicroManipulatorStepper/tree/stl-extras/construction/v4_3dprinting_stl/extras |
 
 The repaired jig files `RodGrindingJigA_repaired.stl` and `RodGrindingJigB_repaired.stl` are in the source chat. Use them, not the GitHub jig files.
 
