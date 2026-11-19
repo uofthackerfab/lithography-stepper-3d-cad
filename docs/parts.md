@@ -48,7 +48,7 @@ Print one of each file unless the table gives a different quantity.
 | `02_camera_sleeve` | 1 | Light tube between the holder and the camera. | Matte black PETG |
 | `03_adapter_plate` | 1 | Joins the projector lens face to the SM1A53 flange. | PETG or ASA |
 | `03_projector_bracket` | 1 | Carries the adapter plate and the projector. | PETG or ASA |
-| `04_tube_clamp` | 3 | Holds a lens tube to the frame. The third clamp is a spare. | Any |
+| `04_tube_clamp` | 1 | Holds the objective tube to the frame. A second clamp is a spare. | Any |
 | `05_baffle_ring` | 4 to 6 | Optional. Decreases reflections in a lens tube. | Matte black PETG |
 | `06_board_rail` | 2 | Holds the TI main board on the uprights. | Any |
 | `07_chip_holder` | 1 | Holds the chip on the micro-manipulator. | Any |
@@ -78,10 +78,10 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 
 | Joint | Screw | Qty |
 |---|---|---|
-| Printed part to frame | M5 × 12 and T-nut | 18 |
+| Printed part to frame | M5 × 12 and T-nut | 14 |
 | Board rail to upright | M5 × 8 and T-nut | 4 |
 | Beamsplitter holder, base to cover | M3 × 20 and nut | 8 |
-| Tube clamp pinch screw | M3 × 16 and nut | 3 |
+| Tube clamp pinch screw | M3 × 16 and nut | 1 |
 | Camera cap | M3 × 16 and nut | 2 |
 | Adapter plate to projector bracket | M3 × 12 and nut | 4 |
 | Main board to rails | M3 × 12 and nut | 4 |
@@ -89,7 +89,7 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 | Adapter plate to projector | M2 × 8 countersunk | 4 |
 | Chip holder to end effector | M3 × 8 countersunk, no nut | 2 |
 
-- The Taiss kit contains 20 M5 × 12 screws. Two are spares.
+- The Taiss kit contains 20 M5 × 12 screws. Six are spares.
 - The M2 thread depth in the projector is unknown. If an M2 × 8 screw does not grip, use M2 × 10. Do not use force.
 - The end effector holes are plain 3.0 mm holes, 8 mm deep. The M3 screws cut their own thread in the plastic.
 - The corner bracket kit contains 40 more M5 × 8 screws and 40 T-nuts. Its T-nuts enter only from the end of a bar.

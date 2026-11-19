@@ -34,6 +34,9 @@ Each picture shows the part in its print orientation.
 | `cad/parts/` | One file for each part |
 | `cad/build.py` | Builds and checks all parts |
 | `cad/render.py` | Makes the pictures in `docs/img/` |
+| [docs/assembly.md](docs/assembly.md) | The complete machine: model, views, main dimensions |
+| `assembly/` | STEP and GLB files of the complete machine |
+| `cad/assembly.py`, `cad/purchased.py` | Positions of all parts; models of the purchased parts |
 | [docs/parts.md](docs/parts.md) | Part list, print settings, screws |
 | [docs/procedures.md](docs/procedures.md) | Test piece, print, and assembly procedures |
 | [docs/dimensions.md](docs/dimensions.md) | Dimensions with their sources, and open items |

@@ -17,6 +17,7 @@ def build():
     t, y0, y1 = P.FLANGE, P.AXIS_TO_FRAME - P.FLANGE, P.AXIS_TO_FRAME
     g = P.UPRIGHT_GAP / 2
     part = box(-HALF_W, HALF_W, Y_FRONT, y1, -t, 0)
+    g += 1                                             # 1 mm clear of the beamsplitter holder
     part += box(g, HALF_W, y0, y1, -DROP, 0) + box(-HALF_W, -g, y0, y1, -DROP, 0)
     tri = [(y0, -t), (y0, -DROP), (Y_FRONT + 10, -t)]
     part += prism_x(tri, HALF_W - t, HALF_W) + prism_x(tri, -HALF_W, -HALF_W + t)

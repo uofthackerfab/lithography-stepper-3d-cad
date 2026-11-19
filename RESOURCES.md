@@ -53,9 +53,9 @@ Thorlabs drawings. Prefix each with `https://media.thorlabs.com/globalassets/ite
 | ZWO ASI174MM camera | 1 | https://telescopescanada.ca/products/zwo-asi174mm-usb3-0-mono-astronomy-camera |
 | Beamsplitter cube, 50/50, 30 mm | 1 | https://www.amazon.ca/dp/B0B34H1HFS |
 | 10X DIN Plan objective | 1 | https://www.edmundoptics.ca/p/10x-din-plan-commercial-grade-objective/5386/ |
-| Lens tube SM1L03 | 2 | https://www.thorlabs.com/item/SM1L03 |
+| Lens tube SM1L03 | 1 | https://www.thorlabs.com/item/SM1L03 |
 | Lens tube SM1L05 | 1 | https://www.thorlabs.com/item/SM1L05 |
-| Lens tube SM1L10 | 2 | https://www.thorlabs.com/item/SM1L10 |
+| Lens tube SM1L10 | 1 | https://www.thorlabs.com/item/SM1L10 |
 | Tube coupler SM1CPL05 | 1 | https://www.thorlabs.com/item/SM1CPL05 |
 | Adjustable tube SM1V05 | 1 | https://www.thorlabs.com/item/SM1V05 |
 | Adjustable tube SM1V10 | 1 | https://www.thorlabs.com/item/SM1V10 |

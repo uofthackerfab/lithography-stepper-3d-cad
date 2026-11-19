@@ -5,7 +5,7 @@ from .. import params as P
 from ..shapes import box, cyl, frame_slots, hexagon, prism_z
 
 PRINT_ROT = (0, 0, 0)
-H = 12.0
+H = 10.0                    # the objective tube has 12 mm free below the holder
 
 
 def build():

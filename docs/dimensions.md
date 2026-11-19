@@ -88,9 +88,9 @@ All dimensions are in millimetres. Links are in [RESOURCES.md](../RESOURCES.md).
 ## Optical distances [E]
 
 - Image distance of the objective: 150 from its shoulder, plus 10 for the glass of the cube.
-- With one SM1L10 below the holder, the camera sensor is approximately 117 from the cube centre.
+- With the SM1L05 and SM1L03 below the holder, the camera sensor is 118 from the cube centre.
 - The camera clamp accepts a camera front face from 106 to 115 behind the optical axis.
-- Heights above the table: chip 135, cube centre 224, projector lens face approximately 300, top of the projector approximately 400. The uprights are 500.
+- Heights above the table: chip 135, cube centre 222, projector lens face approximately 300, top of the projector approximately 400. The uprights are 500.
 
 ## Decisions in this design
 

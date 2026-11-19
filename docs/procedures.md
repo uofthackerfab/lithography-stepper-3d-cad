@@ -27,6 +27,30 @@
 
 The test piece (`00_test_piece.stl`) is optional. It has holes of 30.6, 30.7 and 30.8 mm with 1, 2 and 3 notches. Use it to measure a printer before a long print.
 
+## Assemble the lens tubes (possible before the printed parts arrive)
+
+![Section view of the two tube assemblies](img/tubes_now_section.png)
+
+Each lens tube contains a retaining ring. This is a thin threaded ring with two notches. Turn it with a fingertip or a pen.
+
+Objective tube:
+
+1. Turn the retaining ring of the SM1L05 clockwise until it is approximately 5 mm below the rim.
+2. Screw the objective into the SM1A3 adapter by hand.
+3. Screw the SM1A3 into the end of the SM1L05 that has no outer thread. Stop when it touches the retaining ring. The face of the SM1A3 is then level with the rim.
+4. Remove the retaining ring from the SM1L03.
+5. Screw the outer thread of the SM1L05 into the SM1L03.
+6. Put the dust cap back on the objective.
+
+Projector tube:
+
+1. Turn the lock nut of the SM1V10 down to its collar.
+2. Screw the barrel of the SM1V10 into the end of the SM1L10 that has no outer thread. Leave approximately 12 mm of barrel visible. If the retaining ring of the SM1L10 stops the barrel, turn the ring deeper.
+3. Turn the lock nut up against the SM1L10. Do not tighten it yet. The focus procedure sets this length.
+4. Screw the outer thread of the SM1L10 into the SM1A53 flange. The counterbores of the flange point away from the tube.
+
+Keep these parts as spares: SM1V05, SM1CPL05, SM1A9.
+
 ## 3. Assemble the frame
 
 The frame uses the four 500 mm bars:
@@ -48,7 +72,7 @@ The frame uses the four 500 mm bars:
 2. Put the two uprights on bar A, with the holder between them as a gauge.
 3. Attach each upright to bar A with two corner brackets. Make sure that the front faces of the uprights and of bar A align.
 4. Attach bar B to the front face of bar A, 60 mm or more to the right of the right upright.
-5. Put T-nuts into the slots: 5 in each front slot of the uprights, 4 in each back slot, 2 in the inner slot of the left upright, and 2 in the front slot of bar A.
+5. Put T-nuts into the slots: 3 in each front slot of the uprights, 4 in each back slot, 2 in the inner slot of the left upright, and 2 in the front slot of bar A.
 
 CAUTION: The frame falls to the rear if it tilts more than approximately 13°. Do not push the top of the frame to the rear.
 
@@ -63,7 +87,7 @@ Install the parts from the top to the bottom. Tighten the frame screws only afte
 5. Bolt the base half of the beamsplitter holder to the inner face of the left upright.
 6. Put the cube, the tubes and the sleeve into the base half. Install the cover.
 7. Bolt the camera clamp block to the back faces of the uprights.
-8. Install the tube clamps and the board rails. Put the rails at a height where the projector cables reach the main board.
+8. Install the tube clamp on the objective tube. Install the board rails. Put the rails at a height where the projector cables reach the main board.
 9. Bolt the stage base to the front face of bar A, on the left. Put the micro-manipulator stand in the rim.
 10. Attach the chip holder to the end effector.
 
@@ -71,8 +95,8 @@ Recommended lens tubes:
 
 | Arm | Parts, from the holder outward | Length |
 |---|---|---|
-| Objective (down) | SM1L10, SM1A3, objective | 26.2 mm to the objective shoulder |
-| Projector (up) | SM1L10, SM1V10, SM1A53 | adjustable: 45 to 66 mm |
+| Objective (down) | SM1L03, SM1L05, SM1A3, objective | 21.9 mm to the objective shoulder |
+| Projector (up) | SM1V10 (collar in the holder, barrel up), SM1L10, SM1A53 | adjustable: 45 to 66 mm; 57 in the model |
 | Camera (back) | printed sleeve | 78 mm |
 
 CAUTION: The distance between the objective and the chip is 1.5 mm. Lift the stage slowly.
@@ -82,3 +106,10 @@ CAUTION: The distance between the objective and the chip is 1.5 mm. Lift the sta
 1. Move the stage in Z until the camera shows a sharp image of the chip.
 2. If the stage has no travel left, slide the camera in its saddle.
 3. Project a pattern. Turn the SM1V10 until the pattern is sharp on the camera.
+
+If the SM1V10 has no travel left, change the tubes. No new part is necessary.
+
+| Fault | Change |
+|---|---|
+| Barrel is fully out and the pattern is not sharp (tube too short) | Put the SM1V05 between the SM1L10 and the SM1A53. This adds approximately 21 mm. |
+| Barrel is fully in and the pattern is not sharp (tube too long) | Objective tube: SM1L10 only. Projector tube: SM1V05, SM1L05, SM1A53. |
