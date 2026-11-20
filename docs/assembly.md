@@ -40,6 +40,7 @@ python3 -m http.server 8765
 
 3. Open `http://localhost:8765/viewer/` in a browser.
 4. Drag to turn the model. Use the buttons to change between the private and the public model.
+5. Click **Optics only** to see only the parts on the light paths, with the light rays. The two switches below the buttons show or hide each light path. Click **Full machine** to see all parts. See [optics.md](optics.md).
 
 ## Build the model
 

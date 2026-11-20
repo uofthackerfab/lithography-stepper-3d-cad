@@ -51,6 +51,7 @@ Each picture shows the part in its print orientation.
 | `cad/assembly.py`, `cad/purchased.py` | Positions of all parts; models of the purchased parts |
 | `cad/data/` | CAD of the micro-manipulator (MIT licence), converted by `cad/import_manipulator.py` |
 | `viewer/` | Web page that shows the complete machine in 3D. See [docs/assembly.md](docs/assembly.md). |
+| `optics/`, [docs/optics.md](docs/optics.md) | Ray diagram, 3D light paths, optical numbers and short simulations, from the CAD distances |
 | [docs/parts.md](docs/parts.md) | Part list, print settings, screws |
 | [docs/procedures.md](docs/procedures.md) | Test piece, print, and assembly procedures |
 | [docs/dimensions.md](docs/dimensions.md) | Dimensions with their sources, and open items |

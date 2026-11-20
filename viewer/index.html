@@ -8,7 +8,10 @@
   #bar { position: fixed; top: 10px; left: 10px; background: #fff; padding: 8px 12px; border-radius: 8px;
          box-shadow: 0 1px 4px rgba(0,0,0,.2); }
   #bar button { margin-right: 6px; }
+  #bar label { margin-right: 8px; white-space: nowrap; }
   #msg { color: #555; margin-left: 6px; }
+  #legend { margin-top: 4px; }
+  #legend i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 4px; }
 </style>
 <script type="importmap">
 { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -19,7 +22,12 @@
 <div id="bar">
   <button data-file="../assembly/private/stepper.glb">Private model</button>
   <button data-file="../assembly/public/stepper.glb">Public model</button>
+  &nbsp;View:
+  <button id="full">Full machine</button>
+  <button id="optics">Optics only</button>
+  <label><input type="checkbox" id="glass" checked> Transparent parts</label>
   <span id="msg">Drag: turn. Wheel: zoom. Right drag: move.</span>
+  <div id="legend"></div>
 </div>
 <script type="module">
 // Shows assembly/*/stepper.glb. Start a web server in the repository root, then open /viewer/.
@@ -27,6 +35,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { LineSegments2 } from "three/addons/lines/LineSegments2.js";
+import { LineSegmentsGeometry } from "three/addons/lines/LineSegmentsGeometry.js";
+import { LineMaterial } from "three/addons/lines/LineMaterial.js";
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 document.body.appendChild(renderer.domElement);
@@ -42,13 +53,77 @@ const controls = new OrbitControls(camera, renderer.domElement);
 const msg = document.getElementById("msg");
 let model = null;
 
+const rayMaterials = [];
 function resize() {
   renderer.setSize(innerWidth, innerHeight);
   camera.aspect = innerWidth / innerHeight;
   camera.updateProjectionMatrix();
+  rayMaterials.forEach((m) => m.resolution.set(innerWidth, innerHeight));
 }
 addEventListener("resize", resize);
 resize();
+
+// Light paths from optics/rays.py. The file uses machine axes in mm (z up). The model uses metres, y up.
+const rays = new THREE.Group();
+rays.rotation.x = -Math.PI / 2;
+rays.scale.setScalar(0.001);
+scene.add(rays);
+let opticalParts = null;                                  // names of the parts on the light paths
+fetch("rays.json").then((r) => r.json()).then((data) => {
+  opticalParts = new Set(data.parts);
+  for (const path of data.paths) {
+    const pts = [];
+    for (const line of path.lines)
+      for (let i = 0; i + 1 < line.length; i++) pts.push(...line[i], ...line[i + 1]);
+    const material = new LineMaterial({ color: path.colour, linewidth: 1.6, depthTest: false, transparent: true });
+    material.resolution.set(innerWidth, innerHeight);
+    rayMaterials.push(material);
+    const lines = new LineSegments2(new LineSegmentsGeometry().setPositions(pts), material);
+    lines.renderOrder = 10;                              // draw the light last: it stays visible in the parts
+    rays.add(lines);
+    const item = document.createElement("label");        // one switch for each path: the two paths overlap below the cube
+    item.innerHTML = `<input type="checkbox" checked><i style="background:${path.colour}"></i>${path.name}`;
+    item.firstChild.onchange = (e) => { lines.visible = e.target.checked; };
+    document.getElementById("legend").appendChild(item);
+  }
+}).catch(() => { document.getElementById("legend").textContent = "No light paths. Make them with: uv run --with optiland --with pyvista python -m optics.rays"; });
+
+const glassBox = document.getElementById("glass");
+let opticsOnly = false;
+function apply() {                                        // set the transparency and the visible parts
+  if (!model) return;
+  const glass = glassBox.checked;
+  model.traverse((o) => {
+    const name = o.userData.name;
+    if (opticalParts && name !== undefined && o.parent && o.parent.parent === model)
+      o.visible = !opticsOnly || opticalParts.has(name);
+    if (!o.isMesh) return;
+    o.material.transparent = glass;
+    o.material.opacity = glass ? 0.07 : 1;
+    o.material.depthWrite = !glass;
+    o.material.needsUpdate = true;
+  });
+}
+function look(object, direction, distance) {
+  const box = new THREE.Box3().setFromObject(object);
+  if (box.isEmpty()) return;
+  const centre = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3()).length();
+  controls.target.copy(centre);
+  camera.position.copy(centre).add(direction.multiplyScalar(size * distance));
+}
+glassBox.onchange = apply;
+document.getElementById("full").onclick = () => {
+  opticsOnly = false;
+  apply();
+  look(model, new THREE.Vector3(-0.6, 0.35, 0.8), 1);
+};
+document.getElementById("optics").onclick = () => {      // only the parts on the light paths, from the front right
+  opticsOnly = true;
+  glassBox.checked = true;
+  apply();
+  look(rays, new THREE.Vector3(0.75, 0.2, 0.6), 2.1);
+};
 
 function load(file) {
   msg.textContent = "Loading " + file + " ...";
@@ -56,6 +131,8 @@ function load(file) {
     if (model) scene.remove(model);
     model = gltf.scene;
     scene.add(model);
+    opticsOnly = false;
+    apply();
     const box = new THREE.Box3().setFromObject(model);
     const centre = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3()).length();
@@ -67,7 +144,7 @@ function load(file) {
     msg.textContent = file + " is not present. Build it with: uv run --with pyvista python -m cad.assembly";
   });
 }
-document.querySelectorAll("button").forEach((b) => b.onclick = () => load(b.dataset.file));
+document.querySelectorAll("button[data-file]").forEach((b) => b.onclick = () => load(b.dataset.file));
 load(location.hash === "#public" ? "../assembly/public/stepper.glb" : "../assembly/private/stepper.glb");
 (function frame() { controls.update(); renderer.render(scene, camera); requestAnimationFrame(frame); })();
 </script>
