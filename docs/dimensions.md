@@ -133,7 +133,7 @@ Measured by the user on the complete unit, with a ruler (2026-11-20):
 | Reach of the projector cables to the main board | User | Not published. Slide the rails to the correct height at assembly. |
 | Screws at the projector lens face | User | Use the four screws that held the lens mount, if they are long enough for the 6 mm plate. If not, try M2 × 8, then M2 × 10. |
 | Lens mount of the projector | User | Make sure that it comes off with its four screws. The model shows this, the real unit is not examined. |
-| LED block of the projector | User | Its size is an estimate. The plate and bracket do not go to that side. Make sure at assembly that the heat sinks do not touch the right upright. |
+| LED block of the projector | User | Do not print parts 03 before the projector is open. Hacker Fab's photo of the open projector, seen from above, shows parts that reach approximately 60 to 66 from the lens centre on one side and 50 to 55 on the other [E, ±5]. The bracket leg is at 48 and the upright at 55. Measure these two distances, and how far below the lens centre the parts are, with the cover off. |
 | UV LED board | User | Hacker Fab replaces the blue LED with a UV LED board. The board is not in the inventory. Files: https://github.com/hacker-fab/stepper-v2-led |
 | All fits | User | Confirmed only after a print |
 | Slicer preview | User | Do it in the slicer of the selected printer. The geometry check found no supports necessary. |

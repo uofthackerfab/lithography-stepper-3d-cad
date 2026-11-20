@@ -6,6 +6,15 @@ It does not contain the micro-manipulator parts. See [RESOURCES.md](RESOURCES.md
 The parts are drawn by code. The STL files in `stl/` are ready for a slicer.
 A slicer is the program that converts an STL file into printer instructions.
 
+## The machine
+
+Six views of the complete machine. The labelled view and the main dimensions are in [docs/assembly.md](docs/assembly.md).
+
+| | | |
+|---|---|---|
+| ![Front view](docs/img/assembly_front.png)<br>Front | ![Back view](docs/img/assembly_back.png)<br>Back | ![View from above at 45 degrees](docs/img/assembly_angle.png)<br>From above, at 45° |
+| ![Left view](docs/img/assembly_left.png)<br>Left | ![Right view](docs/img/assembly_right.png)<br>Right | ![Top view](docs/img/assembly_top.png)<br>Top (the rear of the machine is up) |
+
 ## Parts
 
 Each picture shows the part in its print orientation.

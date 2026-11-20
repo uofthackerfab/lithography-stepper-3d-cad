@@ -3,7 +3,7 @@
 Run from the repository root:  uv run --with pyvista python -m cad.assembly
 
 Output: assembly/public/ (simple projector), assembly/private/ (real projector, not in git),
-        docs/img/assembly_*.png
+        docs/img/assembly_*.png (front, back, left, right, top, angle, labelled)
 Axes: x = right, y = rear, z = up. The optical axis is x = y = 0. The table is z = 0.
 """
 from itertools import combinations
@@ -148,8 +148,10 @@ def render(items, out):
               "stage base": "stage base", "projector bracket": "projector bracket", "projector LED block [E]": "LED block (estimate)",
               "upright right": "2020 frame", "tube clamp": "tube clamp", "camera clamp block": "camera clamp"}
     centres = {n: s.bounding_box().center() for n, _, s in items if n in labels}
-    views = {"iso": (-55, 12), "front": (0, 0), "right": (90, 0), "rear": (125, 12), "labelled": (-55, 12)}
-    for view, (az, el) in views.items():
+    # name: (azimuth, elevation). Azimuth 0 = camera in front; 90 = at the right. "top" looks straight down.
+    views = {"front": (0, 0), "back": (180, 0), "left": (-90, 0), "right": (90, 0), "top": None,
+             "angle": (-45, 45), "labelled": (-55, 12)}
+    for view, angles in views.items():
         p = pv.Plotter(off_screen=True, window_size=(1400, 1600), lighting="three lights")
         p.set_background("white")
         for colour, mesh in meshes:
@@ -166,8 +168,11 @@ def render(items, out):
                                show_points=False, margin=6)
         p.enable_anti_aliasing("ssaa")
         p.enable_parallel_projection()
-        p.view_xz()                                        # camera in front, looks to the rear
-        p.camera.azimuth, p.camera.elevation = az, el
+        if angles is None:
+            p.view_xy()                                    # camera above; the rear of the machine is up
+        else:
+            p.view_xz()                                    # camera in front, looks to the rear
+            p.camera.azimuth, p.camera.elevation = angles
         p.reset_camera(bounds=(-110, 110, -110, 170, 0, 520))   # the tower; the base bars run out of view
         p.camera.zoom(1.15)
         p.screenshot(out / f"assembly_{view}.png")

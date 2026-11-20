@@ -7,9 +7,11 @@ The file `assembly/public/stepper.step` contains all parts in their positions. E
 | View | File |
 |---|---|
 | Front | [img/assembly_front.png](img/assembly_front.png) |
+| Back | [img/assembly_back.png](img/assembly_back.png) |
+| Left | [img/assembly_left.png](img/assembly_left.png) |
 | Right | [img/assembly_right.png](img/assembly_right.png) |
-| Rear | [img/assembly_rear.png](img/assembly_rear.png) |
-| No labels | [img/assembly_iso.png](img/assembly_iso.png) |
+| Top | [img/assembly_top.png](img/assembly_top.png) |
+| From above, at 45° | [img/assembly_angle.png](img/assembly_angle.png) |
 
 ## Open the model
 
