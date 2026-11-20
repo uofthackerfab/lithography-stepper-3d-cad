@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <title>Lithography stepper: 3D view</title>
 <style>
-  html, body { margin: 0; height: 100%; background: #f4f5f7; font: 14px system-ui, sans-serif; }
+  html, body { margin: 0; height: 100%; background: #0a1040; font: 14px system-ui, sans-serif; }
   #bar { position: fixed; top: 10px; left: 10px; background: #fff; padding: 8px 12px; border-radius: 8px;
          box-shadow: 0 1px 4px rgba(0,0,0,.2); }
   #bar button { margin-right: 6px; }
   #bar label { margin-right: 8px; white-space: nowrap; }
   #msg { color: #555; margin-left: 6px; }
   #legend { margin-top: 4px; }
-  #legend i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 4px; }
+  #legend i { display: inline-block; width: 28px; height: 6px; vertical-align: middle; margin-right: 4px; outline: 1px solid #999; }
 </style>
 <script type="importmap">
 { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -25,9 +25,10 @@
   &nbsp;View:
   <button id="full">Full machine</button>
   <button id="optics">Optics only</button>
+  <button id="chip">Chip close-up</button>
   <label><input type="checkbox" id="glass" checked> Transparent parts</label>
   <span id="msg">Drag: turn. Wheel: zoom. Right drag: move.</span>
-  <div id="legend"></div>
+  <div id="legend">Rays: <select id="set"></select> <span id="switches"></span></div>
 </div>
 <script type="module">
 // Shows assembly/*/stepper.glb. Start a web server in the repository root, then open /viewer/.
@@ -42,7 +43,15 @@ import { LineMaterial } from "three/addons/lines/LineMaterial.js";
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 document.body.appendChild(renderer.domElement);
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf4f5f7);
+{                                                         // dark background, as in lens design programs: bright rays are clear on it
+  const canvas = document.createElement("canvas");
+  canvas.width = 2; canvas.height = 256;
+  const g = canvas.getContext("2d"), fill = g.createLinearGradient(0, 0, 0, 256);
+  fill.addColorStop(0, "#02040f"); fill.addColorStop(1, "#16226e");
+  g.fillStyle = fill; g.fillRect(0, 0, 2, 256);
+  scene.background = new THREE.CanvasTexture(canvas);
+  scene.background.colorSpace = THREE.SRGBColorSpace;
+}
 scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
 scene.add(new THREE.HemisphereLight(0xffffff, 0x888888, 1.5));
 const sun = new THREE.DirectionalLight(0xffffff, 1.5);
@@ -69,23 +78,43 @@ rays.rotation.x = -Math.PI / 2;
 rays.scale.setScalar(0.001);
 scene.add(rays);
 let opticalParts = null;                                  // names of the parts on the light paths
-fetch("rays.json").then((r) => r.json()).then((data) => {
-  opticalParts = new Set(data.parts);
-  for (const path of data.paths) {
+let chipPoint = null;
+const setBox = document.getElementById("set"), switches = document.getElementById("switches");
+function showSet(view) {                                  // one set of rays, with one switch for each group of paths
+  rays.clear();
+  rayMaterials.length = 0;
+  switches.textContent = "";
+  const groups = new Map();                               // group name -> { lines, colours }
+  for (const path of view.paths) {
     const pts = [];
     for (const line of path.lines)
       for (let i = 0; i + 1 < line.length; i++) pts.push(...line[i], ...line[i + 1]);
-    const material = new LineMaterial({ color: path.colour, linewidth: 1.6, depthTest: false, transparent: true });
+    const material = new LineMaterial({ color: path.colour, linewidth: 1.3, depthTest: false, transparent: true });
     material.resolution.set(innerWidth, innerHeight);
     rayMaterials.push(material);
     const lines = new LineSegments2(new LineSegmentsGeometry().setPositions(pts), material);
     lines.renderOrder = 10;                              // draw the light last: it stays visible in the parts
     rays.add(lines);
-    const item = document.createElement("label");        // one switch for each path: the two paths overlap below the cube
-    item.innerHTML = `<input type="checkbox" checked><i style="background:${path.colour}"></i>${path.name}`;
-    item.firstChild.onchange = (e) => { lines.visible = e.target.checked; };
-    document.getElementById("legend").appendChild(item);
+    const name = path.group || path.name;
+    if (!groups.has(name)) groups.set(name, { lines: [], colours: [] });
+    groups.get(name).lines.push(lines);
+    if (path.colour !== "#ffffff") groups.get(name).colours.push(path.colour);
   }
+  for (const [name, group] of groups) {
+    const colours = group.colours.length ? group.colours : ["#ffffff"];
+    const stops = colours.map((c, i) => `${c} ${100 * i / colours.length}% ${100 * (i + 1) / colours.length}%`).join(", ");
+    const item = document.createElement("label");
+    item.innerHTML = `<input type="checkbox" checked><i style="background:linear-gradient(90deg, ${stops})"></i>${name}`;
+    item.firstChild.onchange = (e) => { group.lines.forEach((l) => { l.visible = e.target.checked; }); };
+    switches.appendChild(item);
+  }
+}
+fetch("rays.json").then((r) => r.json()).then((data) => {
+  opticalParts = new Set(data.parts);
+  chipPoint = new THREE.Vector3(data.chip[0], data.chip[2], -data.chip[1]).multiplyScalar(0.001);
+  data.views.forEach((view, i) => setBox.add(new Option(view.name, i)));
+  setBox.onchange = () => showSet(data.views[setBox.value]);
+  showSet(data.views[0]);
 }).catch(() => { document.getElementById("legend").textContent = "No light paths. Make them with: uv run --with optiland --with pyvista python -m optics.rays"; });
 
 const glassBox = document.getElementById("glass");
@@ -98,8 +127,11 @@ function apply() {                                        // set the transparenc
     if (opticalParts && name !== undefined && o.parent && o.parent.parent === model)
       o.visible = !opticsOnly || opticalParts.has(name);
     if (!o.isMesh) return;
+    if (!o.material.userData.colour) o.material.userData.colour = o.material.color.clone();
+    o.material.color.copy(o.material.userData.colour);
+    if (glass) o.material.color.lerp(new THREE.Color(0xffffff), 0.6);   // pale parts: they stay visible on the dark background
     o.material.transparent = glass;
-    o.material.opacity = glass ? 0.07 : 1;
+    o.material.opacity = glass ? 0.12 : 1;
     o.material.depthWrite = !glass;
     o.material.needsUpdate = true;
   });
@@ -118,11 +150,20 @@ document.getElementById("full").onclick = () => {
   apply();
   look(model, new THREE.Vector3(-0.6, 0.35, 0.8), 1);
 };
-document.getElementById("optics").onclick = () => {      // only the parts on the light paths, from the front right
+function opticsOn() {
   opticsOnly = true;
   glassBox.checked = true;
   apply();
+}
+document.getElementById("optics").onclick = () => {      // only the parts on the light paths, from the front right
+  opticsOn();
   look(rays, new THREE.Vector3(0.75, 0.2, 0.6), 2.1);
+};
+document.getElementById("chip").onclick = () => {        // the place where the light meets the chip, from 5 mm
+  if (!chipPoint) return;
+  opticsOn();
+  controls.target.copy(chipPoint);
+  camera.position.copy(chipPoint).add(new THREE.Vector3(0.75, 0.55, 0.6).normalize().multiplyScalar(0.005));
 };
 
 function load(file) {
@@ -131,15 +172,15 @@ function load(file) {
     if (model) scene.remove(model);
     model = gltf.scene;
     scene.add(model);
-    opticsOnly = false;
     apply();
     const box = new THREE.Box3().setFromObject(model);
     const centre = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3()).length();
     controls.target.copy(centre);
     camera.position.copy(centre).add(new THREE.Vector3(-0.6, 0.35, 0.8).multiplyScalar(size));
-    camera.near = size / 1000; camera.far = size * 10; camera.updateProjectionMatrix();
+    camera.near = size / 10000; camera.far = size * 10; camera.updateProjectionMatrix();
     msg.textContent = "Drag: turn. Wheel: zoom. Right drag: move.";
+    if (opticsOnly) look(rays, new THREE.Vector3(0.75, 0.2, 0.6), 2.1);   // "Optics only" was selected before the model came
   }, undefined, () => {
     msg.textContent = file + " is not present. Build it with: uv run --with pyvista python -m cad.assembly";
   });

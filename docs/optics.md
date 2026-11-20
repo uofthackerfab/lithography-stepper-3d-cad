@@ -8,12 +8,14 @@ Status of each value: [V] verified, [E] estimate, [U] unknown.
 | Command | Result |
 |---|---|
 | `uv run --with optiland python -m optics.layout` | The numbers, and the ray diagram |
-| `uv run --with optiland --with pyvista python -m optics.rays` | The light paths in 3D: picture, and `viewer/rays.json` for the 3D viewer |
+| `uv run --with optiland --with pyvista python -m optics.rays` | The light paths in 3D: three pictures, and `viewer/rays.json` for the 3D viewer |
 | `uv run --with optiland python -m optics.simulate` | The five simulations |
 
 ## Ray diagram
 
 ![Ray diagram from the mirror chip to the chip](img/optics_rays.png)
+
+*Ray diagram of light path 1, projector to chip, seen from the side.*
 
 - The real path is vertical. In the picture, left is up.
 - Each colour is one point on the mirror chip: the centre and two opposite corners.
@@ -23,21 +25,105 @@ Status of each value: [V] verified, [E] estimate, [U] unknown.
 
 ## 3D view
 
-![The two light paths in 3D](img/optics_3d.png)
-
 There are two light paths. They use the same objective.
 
-1. **Projector to chip (violet).** The light goes from the mirror chip straight down through the cube and the objective to the chip.
-2. **Chip to camera (green).** The light goes from the chip up through the objective. The diagonal of the cube reflects it to the rear, to the camera sensor.
+1. **Projector to chip.** The light goes from the mirror chip straight down through the cube and the objective to the chip.
+2. **Chip to camera.** The light goes from the chip up through the objective. The diagonal of the cube reflects it to the rear, to the camera sensor.
 
 The camera sensor and the mirror chip are at the same optical distance from the cube. Thus, when the camera image is sharp, the projector image is sharp.
 
-To turn the model with the mouse, open the 3D viewer ([assembly.md](assembly.md)) and click **Optics only**.
-This view shows only the parts on the light paths. **Full machine** shows all parts.
+The three pictures below have no text in them. The table below each picture names its parts.
 
-- The picture shows the centre and the four corners of each image, with eight rays for each point.
+### View 1: two mirrors
+
+![Two mirrors, the light cones from their corners, and their images](img/optics_3d.png)
+
+*View 1. Two mirrors, with a cone of light from each corner. Projector to chip, and chip to camera.*
+
+| Place in the picture | What it is |
+|---|---|
+| Top, pale block | Projector |
+| Top, two white rectangles | The two mirrors, on the mirror chip in the projector |
+| Vertical coloured lines | Light path 1: projector to chip |
+| Centre, pale blue cube | Beamsplitter cube |
+| Coloured lines to the right | Light path 2: chip to camera |
+| Right, large cylinder | Camera |
+| Right, two white rectangles | The images of the two mirrors on the camera sensor |
+| Below the cube, cylinder with a cone at its end | Objective |
+| Bottom, flat plate | Chip on its holder. The images of the two mirrors are here. View 2 shows them. |
+
+- The mirror chip is a rectangle of 1920 × 1080 mirrors. Each mirror is one pixel, 5.4 µm wide.
+- A real mirror is too small to see at this scale. Thus the picture shows two adjacent mirrors that are drawn 960 times larger. Each one covers half of the mirror chip.
+- A small gap is drawn between the two mirrors, so that the cones do not overlap.
+- Each corner of each mirror sends a cone of light. Each cone has its own colour.
+
+| Mirror | Colours of its four corner cones |
+|---|---|
+| Mirror 1 | Blue, cyan, green, violet |
+| Mirror 2 | Red, orange, yellow, magenta |
+
+- The cone is narrow at the mirror, widest at the objective, and comes to a point on the chip.
+- The same colours go from the chip to the camera. The two rectangles on the camera sensor have the same size as the two mirrors.
+
+### View 2: chip close-up
+
+![The images of the two mirrors on the chip](img/optics_3d_chip.png)
+
+*View 2. The same light, where it meets the chip. The picture is approximately 1.5 mm wide.*
+
+| Place in the picture | What it is |
+|---|---|
+| Background | Surface of the chip |
+| Two white rectangles | The images of the two mirrors. Each is 0.49 × 0.55 mm. |
+| Right rectangle, cold colours | Image of mirror 1 |
+| Left rectangle, warm colours | Image of mirror 2 |
+| Coloured lines from above | The cones of light. They come down from the objective. |
+
+- Each cone comes to one point. The 8 points are the corners of the two rectangles.
+- Each rectangle is 10 times smaller than its mirror.
+- The objective turns the image by 180°. Thus the two rectangles change places.
+
+### View 3: whole image
+
+![Light cones from five points](img/optics_3d_field.png)
+
+*View 3. Cones of light from five points of the complete mirror chip and of the camera sensor.*
+
+| Place in the picture | What it is |
+|---|---|
+| Top, white rectangle | The complete mirror chip, 10.4 × 5.8 mm |
+| Right, white rectangle | The camera sensor, 11.3 × 7.1 mm |
+| White cone | Light from the centre point |
+| Blue, green, red and yellow cones | Light from the four corner points |
+| Other parts | The same as in view 1 |
+
+- The two small areas on the chip are also white rectangles. They are too small to see in this picture.
+- This view shows the full width of the light in the tubes.
+
+### 3D viewer
+
+Open the 3D viewer ([assembly.md](assembly.md)) to turn the model with the mouse.
+
+| Control | Result |
+|---|---|
+| **Optics only** | Shows only the parts on the light paths |
+| **Chip close-up** | Goes to the place where the light meets the chip (view 2) |
+| **Full machine** | Shows all parts |
+| **Rays** list | Selects "Two mirrors" (views 1 and 2) or "Whole image" (view 3) |
+| Switches | Show or hide each path |
+
 - The long side of the mirror chip is drawn from front to rear [E]. Turn the camera in its clamp until its image agrees.
-- The cube also reflects half of the projector light to the front wall of the holder. The picture does not show this lost light.
+- The cube also reflects half of the projector light to the front wall of the holder. The pictures do not show this lost light.
+
+## Real size of two mirrors
+
+![From the mirror chip to two mirrors to their images](img/optics_pixels.png)
+
+*From left to right: the mirror chip, a zoom on two adjacent mirrors, their light on the chip, and the same as a graph.*
+
+- This picture shows two adjacent mirrors at their real size.
+- On the chip, the two mirrors are 0.54 µm apart. The light of each mirror spreads to approximately 0.9 µm, thus the two images overlap.
+- In the 3D view, each cone comes to a perfect point. A real cone comes to a small disc. See simulation 1.
 
 ## Results
 

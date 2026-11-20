@@ -228,7 +228,69 @@ def sim_dose():
     save(fig, "5_dose")
 
 
+def sim_pixels():
+    """0. From the mirror chip to two adjacent mirrors to their images on the chip."""
+    from matplotlib.colors import to_rgb
+    from .layout import DMD
+    fig, (a, b, c, d) = plt.subplots(1, 4, figsize=(15, 4.3), gridspec_kw={"width_ratios": [1.25, 1, 1, 1.15]})
+
+    # a: the complete mirror chip, with the five points that the 3D view uses
+    w, h = DMD
+    a.add_patch(plt.Rectangle((-w / 2, -h / 2), w, h, facecolor="#e4e3df", edgecolor=INK, lw=1.5))
+    points = [(0, 0), (w / 2, h / 2), (-w / 2, h / 2), (w / 2, -h / 2), (-w / 2, -h / 2)]
+    a.scatter(*zip(*points), s=70, color="#6a1bff", zorder=3, clip_on=False)
+    a.annotate("the 5 points in the 3D view\n(centre and 4 corners)", (w / 2, h / 2), (0, 4.2), ha="center", fontsize=9,
+               arrowprops=dict(arrowstyle="-", color=MUTED, lw=0.8))
+    a.text(0, -1.2, "1920 × 1080 mirrors\n= 2 million mirrors", ha="center", va="top", fontsize=9)
+    a.text(0.5, 0.25, "zoom →", fontsize=9, color=C[1])
+    a.set(xlim=(-6.5, 6.5), ylim=(-5.2, 5.6), aspect="equal", xlabel="mm", title=f"1. The mirror chip, {w:.1f} × {h:.1f} mm")
+    a.grid(False)
+
+    # b: a small area of the mirror chip. Two adjacent mirrors are on.
+    pitch = MIRROR * 1000
+    for i in range(-3, 4):
+        for j in range(-2, 3):
+            colour = {(-1, 0): C[0], (0, 0): C[1]}.get((i, j), "#d0cfca")
+            b.add_patch(plt.Rectangle((i * pitch + 0.2, (j - 0.5) * pitch + 0.2), pitch - 0.4, pitch - 0.4,
+                                      facecolor=colour, edgecolor="none"))
+    b.annotate("", (-pitch, -1.75 * pitch), (0, -1.75 * pitch), arrowprops=dict(arrowstyle="<->", color=INK, lw=1))
+    b.text(-pitch / 2, -1.75 * pitch - 0.6, f"{pitch:.1f} µm", ha="center", va="top", fontsize=9,
+           bbox=dict(facecolor=SURFACE, edgecolor="none", pad=1))
+    b.set(xlim=(-3 * pitch, 4 * pitch), ylim=(-2.5 * pitch, 2.5 * pitch), aspect="equal", xlabel="µm on the mirror chip",
+          title="2. Zoom: two adjacent mirrors are on")
+    b.grid(False)
+
+    # c, d: the images of the two mirrors on the chip. The objective turns the image by 180 degrees.
+    orange, blue = image(mirrors([[1, 0]])), image(mirrors([[0, 1]]))       # blue is now at the right
+    peak = blue.max()
+    x = axis()
+    n = int(2.2 / DX)
+    crop = slice(N // 2 - n, N // 2 + n)
+    rgb = (blue[crop, crop, None] * np.array(to_rgb(C[0])) + orange[crop, crop, None] * np.array(to_rgb(C[1]))) / peak
+    c.imshow(np.clip(rgb, 0, 1), extent=[-n * DX, n * DX, -n * DX, n * DX])
+    for x0 in (-PIXEL, 0):
+        c.add_patch(plt.Rectangle((x0, -PIXEL / 2), PIXEL, PIXEL, fill=False, edgecolor="white", lw=1, ls="--"))
+    c.text(0, -1.9, "dashed: the two mirrors, 10 X smaller", color="white", ha="center", fontsize=8)
+    c.text(0, 1.7, "the objective turns the image by 180°:\nblue is now at the right", color="white", ha="center", fontsize=8)
+    c.set(xlabel="µm on the chip", title="3. Their light on the chip")
+    c.grid(False)
+
+    for data, colour, name in ((orange, C[1], "orange mirror"), (blue, C[0], "blue mirror")):
+        d.plot(x, data[N // 2] / peak, color=colour, label=name)
+    d.plot(x, (orange + blue)[N // 2] / peak, color=INK, lw=1.2, ls="--", label="sum")
+    d.axvspan(-PIXEL, 0, color=C[1], alpha=0.12, lw=0)
+    d.axvspan(0, PIXEL, color=C[0], alpha=0.12, lw=0)
+    d.set(xlim=(-2.2, 2.2), ylim=(0, 2.05), xlabel="µm on the chip", ylabel="Light (1 = centre of one mirror image)",
+          title="4. The same, as a graph")
+    d.legend(frameon=False, fontsize=8, loc="upper left")
+    d.text(0, 1.72, f"each mirror\n{PIXEL:.2f} µm", ha="center", fontsize=8, color=MUTED)
+    fig.tight_layout()
+    fig.savefig(OUT / "optics_pixels.png", dpi=150)
+    plt.close(fig)
+    print("docs/img/optics_pixels.png")
+
+
 if __name__ == "__main__":
-    for sim in (sim_airy, sim_lines, sim_focus, sim_pattern, sim_dose):
+    for sim in (sim_pixels, sim_airy, sim_lines, sim_focus, sim_pattern, sim_dose):
         sim()
     print("contrast in focus:", {w: round(float(contrast(w)), 2) for w in (1, 2, 3, 4)})
