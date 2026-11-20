@@ -19,13 +19,15 @@ Six views of the complete machine. The labelled view and the main dimensions are
 
 Each picture shows the part in its print orientation.
 
-| | | |
-|---|---|---|
-| ![Test piece (optional)](docs/img/00_test_piece.png)<br>`00_test_piece`<br>Test piece (optional) | ![Beamsplitter holder, base](docs/img/01_beamsplitter_holder_base.png)<br>`01_beamsplitter_holder_base`<br>Beamsplitter holder, base | ![Beamsplitter holder, cover](docs/img/01_beamsplitter_holder_cover.png)<br>`01_beamsplitter_holder_cover`<br>Beamsplitter holder, cover |
-| ![Camera clamp, block](docs/img/02_camera_clamp_block.png)<br>`02_camera_clamp_block`<br>Camera clamp, block | ![Camera clamp, cap](docs/img/02_camera_clamp_cap.png)<br>`02_camera_clamp_cap`<br>Camera clamp, cap | ![Camera sleeve](docs/img/02_camera_sleeve.png)<br>`02_camera_sleeve`<br>Camera sleeve |
-| ![Adapter plate](docs/img/03_adapter_plate.png)<br>`03_adapter_plate`<br>Adapter plate | ![Projector bracket](docs/img/03_projector_bracket.png)<br>`03_projector_bracket`<br>Projector bracket | ![Tube clamp](docs/img/04_tube_clamp.png)<br>`04_tube_clamp`<br>Tube clamp |
-| ![Baffle ring (optional)](docs/img/05_baffle_ring.png)<br>`05_baffle_ring`<br>Baffle ring (optional) | ![Board rail](docs/img/06_board_rail.png)<br>`06_board_rail`<br>Board rail | ![Chip holder](docs/img/07_chip_holder.png)<br>`07_chip_holder`<br>Chip holder |
-| ![Stage base](docs/img/08_stage_base.png)<br>`08_stage_base`<br>Stage base | ![Side board holder](docs/img/09_side_board_holder.png)<br>`09_side_board_holder`<br>Side board holder |   |
+| | |
+|---|---|
+| ![Test piece (optional)](docs/img/00_test_piece.png)<br>`00_test_piece`<br>Test piece (optional) | ![Beamsplitter holder, base](docs/img/01_beamsplitter_holder_base.png)<br>`01_beamsplitter_holder_base`<br>Beamsplitter holder, base |
+| ![Beamsplitter holder, cover](docs/img/01_beamsplitter_holder_cover.png)<br>`01_beamsplitter_holder_cover`<br>Beamsplitter holder, cover | ![Camera clamp, block](docs/img/02_camera_clamp_block.png)<br>`02_camera_clamp_block`<br>Camera clamp, block |
+| ![Camera clamp, cap](docs/img/02_camera_clamp_cap.png)<br>`02_camera_clamp_cap`<br>Camera clamp, cap | ![Camera sleeve](docs/img/02_camera_sleeve.png)<br>`02_camera_sleeve`<br>Camera sleeve |
+| ![Adapter plate](docs/img/03_adapter_plate.png)<br>`03_adapter_plate`<br>Adapter plate | ![Projector bracket](docs/img/03_projector_bracket.png)<br>`03_projector_bracket`<br>Projector bracket |
+| ![Tube clamp](docs/img/04_tube_clamp.png)<br>`04_tube_clamp`<br>Tube clamp | ![Baffle ring (optional)](docs/img/05_baffle_ring.png)<br>`05_baffle_ring`<br>Baffle ring (optional) |
+| ![Board rail](docs/img/06_board_rail.png)<br>`06_board_rail`<br>Board rail | ![Chip holder](docs/img/07_chip_holder.png)<br>`07_chip_holder`<br>Chip holder |
+| ![Stage base](docs/img/08_stage_base.png)<br>`08_stage_base`<br>Stage base | ![Side board holder](docs/img/09_side_board_holder.png)<br>`09_side_board_holder`<br>Side board holder |
 
 ## Status
 
