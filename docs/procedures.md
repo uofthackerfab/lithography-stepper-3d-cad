@@ -100,7 +100,7 @@ Install the parts from the top to the bottom. Tighten the frame screws only afte
 6. Bolt the base half of the beamsplitter holder to the inner face of the left upright.
 7. Put the cube, the tubes and the sleeve into the base half. Install the cover.
 8. Bolt the camera clamp block to the back faces of the uprights.
-9. Install the tube clamp on the objective tube. Install the board rails. Put the rails at a height where the projector cables reach the main board.
+9. Install the tube clamp on the objective tube. Install the board rails. Put the rails at a height where the projector cables reach the main board. Install the side board holder at the top of the uprights, with its two M3 nuts in the pockets. Hang the side board on it with the cable connector down.
 10. Bolt the stage base to the front face of bar A, on the left. Put the micro-manipulator stand in the rim.
 11. Attach the chip holder to the end effector.
 

@@ -53,6 +53,7 @@ Print one of each file unless the table gives a different quantity.
 | `06_board_rail` | 2 | Holds the TI main board on the uprights. | Any |
 | `07_chip_holder` | 1 | Holds the chip on the micro-manipulator. | Any |
 | `08_stage_base` | 1 | Locates the micro-manipulator stand below the objective. | Any |
+| `09_side_board_holder` | 1 | Holds the TI side board (HDMI) above the main board. | Any |
 
 "Any" means PLA or PETG of any colour.
 One 1 kg spool of matte black PETG is sufficient for all parts. This is the simplest selection.
@@ -79,12 +80,12 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 | Joint | Screw | Qty |
 |---|---|---|
 | Printed part to frame | M5 × 12 and T-nut | 14 |
-| Board rail to upright | M5 × 8 and T-nut | 4 |
+| Board rail and side board holder to upright | M5 × 8 and T-nut | 6 |
 | Beamsplitter holder, base to cover | M3 × 20 and nut | 8 |
 | Tube clamp pinch screw | M3 × 16 and nut | 1 |
 | Camera cap | M3 × 16 and nut | 2 |
 | Adapter plate to projector bracket | M3 × 12 and nut | 4 |
-| Main board to rails | M3 × 12 and nut | 4 |
+| Main board to rails, side board to holder | M3 × 12 and nut | 6 |
 | SM1A53 flange to adapter plate | M3 × 6 socket head and nut | 4 |
 | Adapter plate to projector | M2 × 8 countersunk | 4 |
 | Chip holder to end effector | M3 × 8 countersunk, no nut | 2 |
@@ -132,3 +133,10 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 - Put the stand in the rim. The centre of the end effector is then on the optical axis.
 - The chip is approximately 135 mm above the table.
 - The stage moves approximately 20 mm in Z. Use this travel to focus.
+
+**09 Side board holder**
+- The side board is the small TI board with the HDMI socket.
+- It hangs from two M3 screws. These are the same two holes that hold it in the projector.
+- The distance between the two holes is an estimate from a photo (67 mm). The slots accept 61 to 73 mm.
+- Put the two M3 nuts into the pockets on the back of the holder before you bolt the holder to the uprights.
+- The cable connector of the board points down, to the main board.
