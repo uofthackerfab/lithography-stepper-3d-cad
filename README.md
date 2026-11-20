@@ -15,6 +15,40 @@ Six views of the complete machine. The labelled view and the main dimensions are
 | ![Front view](docs/img/assembly_front.png)<br>Front | ![Back view](docs/img/assembly_back.png)<br>Back | ![View from above at 45 degrees](docs/img/assembly_angle.png)<br>From above, at 45° |
 | ![Left view](docs/img/assembly_left.png)<br>Left | ![Right view](docs/img/assembly_right.png)<br>Right | ![Top view](docs/img/assembly_top.png)<br>Top (the rear of the machine is up) |
 
+## The light paths
+
+There are two light paths. They use the same objective.
+
+1. **Projector to chip.** The light goes from the mirror chip in the projector straight down through the beamsplitter cube and the objective to the chip.
+2. **Chip to camera.** The light goes from the chip up through the objective. The cube reflects it to the rear, to the camera.
+
+The pictures have no text in them. The explanation, the names of the parts and the optical numbers are in [docs/optics.md](docs/optics.md).
+
+| | | |
+|---|---|---|
+| ![Two mirrors with the light cones from their corners](docs/img/optics_3d.png)<br>**View 1: two mirrors.** Each corner of each mirror sends a cone of light. Top: projector. Centre: cube. Right: camera. Bottom: chip. The mirrors are drawn 960 times larger. | ![The light cones where they meet the chip](docs/img/optics_3d_chip.png)<br>**View 2: chip close-up.** Each cone comes to a point on the chip. The two white rectangles are the images of the two mirrors. | ![Light cones from five points of the complete mirror chip](docs/img/optics_3d_field.png)<br>**View 3: whole image.** Cones from the centre and the four corners of the complete mirror chip and of the camera sensor. |
+
+The same light path from the side, with the tube walls:
+
+![Ray diagram from the mirror chip to the chip](docs/img/optics_rays.png)
+
+Two adjacent mirrors at their real size, and their light on the chip:
+
+![From the mirror chip to two mirrors to their images](docs/img/optics_pixels.png)
+
+### Simulations
+
+Five short simulations of the image on the chip. Each one shows one effect. The objective is a perfect lens in all of them. The notes for each chart are in [docs/optics.md](docs/optics.md).
+
+| | |
+|---|---|
+| ![Airy pattern](docs/img/optics_sim_1_airy.png)<br>**1. The image of one point.** One point of light makes a disc of 0.98 µm radius, not a point. The disc is larger than one mirror. | ![Lines of 1 to 4 mirrors](docs/img/optics_sim_2_lines.png)<br>**2. Narrow lines lose contrast.** Lines of 2 mirrors (1.1 µm) are the practical minimum. |
+| ![Contrast against focus](docs/img/optics_sim_3_focus.png)<br>**3. Focus.** The contrast goes down when the chip is too high or too low. The depth of focus is ± 3.2 µm. | ![Line width against dose](docs/img/optics_sim_5_dose.png)<br>**5. Exposure dose.** More dose makes a line wider. Each line width has its correct dose. |
+
+![Test pattern on the mirror chip, on the chip, and in the resist](docs/img/optics_sim_4_pattern.png)
+
+**4. A full pattern, and the resist.** Corners become round. Small squares print too small, or not at all.
+
 ## Parts
 
 Each picture shows the part in its print orientation.
