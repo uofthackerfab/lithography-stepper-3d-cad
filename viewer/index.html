@@ -115,6 +115,7 @@ fetch("rays.json").then((r) => r.json()).then((data) => {
   data.views.forEach((view, i) => setBox.add(new Option(view.name, i)));
   setBox.onchange = () => showSet(data.views[setBox.value]);
   showSet(data.views[0]);
+  redraw();
 }).catch(() => { document.getElementById("legend").textContent = "No light paths. Make them with: uv run --with optiland --with pyvista python -m optics.rays"; });
 
 const glassBox = document.getElementById("glass");
@@ -127,13 +128,13 @@ function apply() {                                        // set the transparenc
     if (opticalParts && name !== undefined && o.parent && o.parent.parent === model)
       o.visible = !opticsOnly || opticalParts.has(name);
     if (!o.isMesh) return;
-    if (!o.material.userData.colour) o.material.userData.colour = o.material.color.clone();
-    o.material.color.copy(o.material.userData.colour);
-    if (glass) o.material.color.lerp(new THREE.Color(0xffffff), 0.6);   // pale parts: they stay visible on the dark background
-    o.material.transparent = glass;
-    o.material.opacity = glass ? 0.12 : 1;
-    o.material.depthWrite = !glass;
-    o.material.needsUpdate = true;
+    // Transparent parts use a flat material: the chip draws many layers for each pixel, and flat is fast.
+    if (!o.userData.solid) {
+      o.userData.solid = o.material;
+      o.userData.glass = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.12, depthWrite: false,
+        color: o.material.color.clone().lerp(new THREE.Color(0xffffff), 0.6) });
+    }
+    o.material = glass ? o.userData.glass : o.userData.solid;
   });
 }
 function look(object, direction, distance) {
@@ -172,6 +173,7 @@ function load(file) {
     if (model) scene.remove(model);
     model = gltf.scene;
     scene.add(model);
+    redraw();
     apply();
     const box = new THREE.Box3().setFromObject(model);
     const centre = box.getCenter(new THREE.Vector3());
@@ -187,7 +189,16 @@ function load(file) {
 }
 document.querySelectorAll("button[data-file]").forEach((b) => b.onclick = () => load(b.dataset.file));
 load(location.hash === "#public" ? "../assembly/public/stepper.glb" : "../assembly/private/stepper.glb");
-(function frame() { controls.update(); renderer.render(scene, camera); requestAnimationFrame(frame); })();
+// Draw only after a change. A still picture then uses no power.
+let draw = 2;
+const redraw = () => { draw = 2; };
+controls.addEventListener("change", redraw);
+for (const event of ["resize", "click", "change"]) addEventListener(event, redraw);
+(function frame() {
+  controls.update();
+  if (draw > 0) { renderer.render(scene, camera); draw--; }
+  requestAnimationFrame(frame);
+})();
 </script>
 </body>
 </html>
