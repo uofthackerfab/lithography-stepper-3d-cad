@@ -137,6 +137,6 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 **09 Side board holder**
 - The side board is the small TI board with the HDMI socket.
 - It hangs from two M3 screws. These are the same two holes that hold it in the projector.
-- The distance between the two holes is an estimate from a photo (67 mm). The slots accept 61 to 73 mm.
+- The board is 76.2 mm square. Its corner holes are 68.58 mm apart [V], from the TI drill file. The slots give ±3 mm.
 - Put the two M3 nuts into the pockets on the back of the holder before you bolt the holder to the uprights.
 - The cable connector of the board points down, to the main board.

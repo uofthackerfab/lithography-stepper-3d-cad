@@ -78,6 +78,12 @@ Measured by the user on the complete unit, with a ruler (2026-11-20):
 - Small parts only on the bottom side.
 - Height of the fan on the top side [U]. It does not matter: the top side points away from the rails.
 
+## Side board: TI DLP048 rev B [V]
+
+- Outline 76.2 × 76.2 (3.000 inch).
+- Four corner holes, 3.43 diameter, on a 68.58 × 68.58 square. Source: TI file `dlpc147.zip`, drill file `DLP048B-1-4-np.drl`.
+- It has the HDMI socket. A short flat cable joins it to the main board.
+
 ## Frame
 
 - 2020 extrusion. Slot opening 6.2, slot depth 6.1 [V, copy of a datasheet].

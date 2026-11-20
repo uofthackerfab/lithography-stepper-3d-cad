@@ -1,15 +1,14 @@
 """Part 9. Side board holder: holds the TI front-end (HDMI) board above the main board.
 
 A strip on the back faces of the uprights. The board hangs down from two M3 screws.
-These are the two holes that hold the board in the projector. The slots accept a hole
-distance from 61 to 73 mm, because the distance is an estimate.
+These are two of its four corner holes (68.58 mm apart). The slots give +/- 3 mm.
 """
 from .. import params as P
 from ..shapes import box, frame_slots, slot
 
 PRINT_ROT = (90, 0, 0)      # strip flat on the bed, standoffs up
 T = 3.0                     # thin: an M5 x 8 screw is correct here
-HOLE_X = 67.0               # distance of the two board holes [E], from a photo
+HOLE_X = 68.58              # distance of the board holes [V], TI drill file DLP048B (2.700 inch)
 TRAVEL = 3.0                # each slot: +/- 3
 Z_M5 = -16.0                # frame screws, below the board screws
 

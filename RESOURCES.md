@@ -26,6 +26,7 @@ Onshape element ids for the adapter plate: `0e8c1f104c4c4708545e72bb` (aluminium
 |---|---|
 | TI DLPDLCR471TPEVM product page | https://www.ti.com/tool/DLPDLCR471TPEVM |
 | TI user's guide DLPU105 | https://www.ti.com/lit/pdf/DLPU105 |
+| TI Front-End (side) Board design package | `dlpc147.zip`, https://www.ti.com/lit/zip/DLPC147 (TI sign-in necessary) |
 | TI Formatter Board design package | `dlpc145.zip` (the user has this file; drill file `DLP046B-1-10-np.drl`) |
 | ZWO ASI174MM product page | https://www.zwoastro.com/product/asi174mm-mono |
 | ZWO ASI174MM manual (drawing on page 17) | https://cdn.shopify.com/s/files/1/0652/6245/2965/files/ZWO-ASI174MM-Manual.pdf |

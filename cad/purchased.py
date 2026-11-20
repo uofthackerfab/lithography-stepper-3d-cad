@@ -152,11 +152,11 @@ def main_board():
 
 
 def side_board():
-    """TI DLP048 front-end (HDMI) board, approximately 77 x 73 [E]. Origin between its two screw holes.
+    """TI DLP048 front-end (HDMI) board, 76.2 x 76.2 [V]. Origin between its two upper screw holes.
 
     It hangs down from the holes, bottom side at y = 0. The cable connector is at the lower edge.
     """
-    return box(-38.5, 38.5, 0, 1.6, -69, 4) + box(-30, 30, 1.6, 8, -66, -8)   # board, and its parts [E]
+    return box(-38.1, 38.1, 0, 1.6, -72.39, 3.81) + box(-30, 30, 1.6, 8, -68, -8)   # board, and its parts [E]
 
 
 def manipulator():
