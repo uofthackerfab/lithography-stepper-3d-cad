@@ -40,10 +40,16 @@ WALL = 4.0              # minimum wall
 # --- Projector lens face [V], Hacker Fab adapter plate CAD ---
 M2_SQUARE = 28.0        # four M2 holes on a 28 x 28 square
 DMD_OFFSET = 2.9        # light bore is this far from the centre of the square
+# The projector has a thin lip on the side that the light bore is nearest to [V], projector CAD.
+# It is 45 wide and hangs 8.5 below the lens face. Values are from the plate centre.
+LIP_X = 23.2            # half width of the slot for the lip (lip: 22.5)
+LIP_Y = (-27.0, -23.6)  # slot for the lip (lip: -26.2 to -24.4)
+RIB_Y = -19.3           # small ribs go from the lip to here, 3.5 below the lens face
+LIP_DROP = 8.5
 LIGHT_BORE = 25.4
 SM1A53_BOLT_R = 18.385  # four M3 holes on a 26 x 26 square [V], Thorlabs drawing
-PLATE = 62.0            # adapter plate, square
-PLATE_BOLT = 26.0       # plate-to-bracket M3 holes at (+/-26, +/-26)
+PLATE = 66.0            # adapter plate, square
+PLATE_BOLT = 28.0       # plate-to-bracket M3 holes at (+/-28, +/-28)
 
 # --- Main board: TI DLP046 rev B [V], TI design package ---
 BOARD_X = 150.0

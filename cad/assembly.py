@@ -31,7 +31,7 @@ SEAT = holder.CUBE_Z + holder.LIP            # cube centre to the end of each tu
 CUBE_Z = SHOULDER + LOWER + 3 + SEAT         # centre of the beamsplitter cube
 IMAGE = 150.0 + 10.2                         # objective shoulder to image; 10.2 for the cube glass [E]
 ARM = IMAGE - (CUBE_Z - SHOULDER)            # cube centre to camera sensor, and to the mirror chip
-DMD_TO_FACE = 38.0                           # mirror chip to lens face [E]
+DMD_TO_FACE = 41.4                           # mirror chip to lens face [V], projector CAD
 FACE_Z = CUBE_Z + ARM - DMD_TO_FACE          # projector lens face = top of the adapter plate
 PLATE_Z = FACE_Z - adapter_plate.T
 V10_Z = CUBE_Z + SEAT                        # bottom of the SM1V10 collar; the collar sits in the holder
@@ -45,7 +45,7 @@ FRAME, PRINTED, OPTICS, CAMERA, PROJECTOR, BOARD, STAGE, GLASS = (
     "#b8bcc2", "#3d4756", "#1c1c1e", "#b3261e", "#6f7d8c", "#1f7a3d", "#c98a2b", "#9fd6e8")
 
 
-def parts():
+def parts(real=False):
     """Return [(name, colour, solid)] with every solid in its final position."""
     y0, y1 = P.AXIS_TO_FRAME, P.FRAME_BACK
     yc = (y0 + y1) / 2
@@ -74,7 +74,7 @@ def parts():
         ("SM1A53 flange", OPTICS, Pos(0, 0, PLATE_Z - 5.56) * B.sm1a53()),
         ("adapter plate", PRINTED, Pos(0, 0, PLATE_Z) * adapter_plate.build()),
         ("projector bracket", PRINTED, Pos(0, 0, PLATE_Z) * projector_bracket.build()),
-        ("projector light engine", PROJECTOR, Pos(0, 0, FACE_Z) * B.projector()),
+        ("projector light engine", PROJECTOR, Pos(0, 0, FACE_Z) * B.projector(real)),
         ("board rail lower", PRINTED, Pos(0, 0, RAIL_Z[0]) * board_rail.build()),
         ("board rail upper", PRINTED, Pos(0, 0, RAIL_Z[1]) * board_rail.build()),
         ("main board", BOARD,
@@ -108,10 +108,17 @@ def render(items, out):
     import pyvista as pv
     meshes = []
     for name, colour, solid in items:
-        v, t = solid.tessellate(0.05, 0.3)
-        pts = np.array([(p.X, p.Y, p.Z) for p in v])
-        faces = np.hstack([np.full((len(t), 1), 3), np.array(t)]).ravel()
-        meshes.append((colour, pv.PolyData(pts, faces)))
+        try:
+            v, t = solid.tessellate(0.05, 0.3)
+            pts = np.array([(p.X, p.Y, p.Z) for p in v])
+            faces = np.hstack([np.full((len(t), 1), 3), np.array(t)]).ravel()
+            meshes.append((colour, pv.PolyData(pts, faces)))
+        except AttributeError:                             # a face without triangles (imported CAD)
+            import tempfile
+            from build123d import export_stl
+            with tempfile.TemporaryDirectory() as d:
+                export_stl(solid, f"{d}/a.stl", tolerance=0.05, angular_tolerance=0.3)
+                meshes.append((colour, pv.read(f"{d}/a.stl")))
     labels = {"projector light engine": "projector", "main board": "main board", "SM1L10": "lens tubes",
               "beamsplitter holder cover": "beamsplitter holder (cube inside)", "camera ASI174MM": "camera",
               "objective 10X": "10X objective", "chip": "chip", "stage: motor X": "micro-manipulator",
@@ -152,7 +159,9 @@ def main():
         print(f"{name:34s} {b.min.X:7.1f}..{b.max.X:6.1f} {b.min.Y:7.1f}..{b.max.Y:6.1f} {b.min.Z:7.1f}..{b.max.Z:6.1f}")
     print(f"\ncube centre z = {CUBE_Z:.1f}   lens face z = {FACE_Z:.1f}   camera front y = {CAMERA_Y:.1f}"
           f"   SM1V10 travel used = {V10_TRAVEL:.1f} of 20.6")
-    bad = collisions(items)
+    real = parts(real=True) if B.VENDOR.exists() else items    # the real projector model, if present
+    print("collision check with", "the real projector model" if real is not items else "the simple projector model")
+    bad = collisions(real)
     for a, b, vol in bad:
         print(f"COLLISION  {a}  /  {b}  {vol:.0f} mm3")
     print("no collisions" if not bad else f"{len(bad)} collisions")
@@ -166,7 +175,7 @@ def main():
     asm = Compound(label="lithography stepper", children=solids)
     export_step(asm, str(out / "stepper.step"))
     export_gltf(asm, str(out / "stepper.glb"), binary=True)
-    render(items, ROOT / "docs" / "img")
+    render(real, ROOT / "docs" / "img")
     return 1 if bad else 0
 
 

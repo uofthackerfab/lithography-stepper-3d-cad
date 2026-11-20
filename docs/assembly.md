@@ -38,10 +38,10 @@ The command prints the position of each part. It also tests each pair of parts f
 | Objective shoulder | z = 180.2 | [V] |
 | Centre of the beamsplitter cube | z = 222.2 | [V] |
 | Front face of the camera | y = 111.7 | [E] uses the 150 image distance |
-| Projector lens face | z = 302.4 | [E] uses 38 from mirror chip to lens face |
-| Top of the projector | z = 369 | [E] |
+| Projector lens face | z = 299.0 | [V] 41.4 from mirror chip to lens face, projector CAD |
+| Top of the projector | z = 361 | [V] projector CAD |
 | Top of the uprights | z = 520 | [V] |
-| SM1V10 travel in use | 11.8 of 20.6 | [E] |
+| SM1V10 travel in use | 8.4 of 20.6 | [E] |
 | Footprint of the frame | 500 × 520 | [V] |
 
 ## Lens tubes in the model
@@ -54,7 +54,7 @@ The command prints the position of each part. It also tests each pair of parts f
 
 ## Simplified parts
 
-- Projector: a box, 84 × 88 × 67, with the light hole 22 from its rear edge [E].
+- Projector: the pictures and the collision check use the real CAD model (`vendor/projector.brep`). This file is not in the repository. The STEP and GLB files contain a simple block model with the same outside dimensions.
 - Micro-manipulator: boxes for the base block, end effector, three motors, three motor mounts and the stand. The positions are from the STL files. Rods, horns and wires are not shown.
 - Main board: a plate with the correct outline and holes.
 - Screws, nuts, T-nuts, corner brackets, felt and cables are not shown.

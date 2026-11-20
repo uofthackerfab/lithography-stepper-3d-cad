@@ -90,7 +90,7 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 | Chip holder to end effector | M3 × 8 countersunk, no nut | 2 |
 
 - The Taiss kit contains 20 M5 × 12 screws. Six are spares.
-- The M2 thread depth in the projector is unknown. If an M2 × 8 screw does not grip, use M2 × 10. Do not use force.
+- At the projector, use the four screws that held the lens mount if they are long enough. If not, try M2 × 8, then M2 × 10. Do not use force.
 - The end effector holes are plain 3.0 mm holes, 8 mm deep. The M3 screws cut their own thread in the plastic.
 - The corner bracket kit contains 40 more M5 × 8 screws and 40 T-nuts. Its T-nuts enter only from the end of a bar.
 
@@ -112,10 +112,10 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 - The block is large (approximately 290 cm³). Its print time is long.
 
 **03 Adapter plate and projector bracket**
-- The light hole is 2.9 mm from the centre of the M2 hole square. The direction on your projector is unknown.
-- The plate fits on the projector in four positions. Only one is correct.
-- The plate also fits on the bracket in four positions. Thus the projector can point in any of four directions.
-- The projector is not symmetrical about the light hole. Point its larger part to the front, away from the uprights.
+- The light hole is 2.9 mm from the centre of the M2 hole square.
+- The projector has a thin lip that goes 8.5 mm below its lens face. The plate has a slot for the lip, and the bracket has a pocket.
+- Thus the plate fits on the projector in one position. Put the slot to the front on the bracket.
+- These dimensions are from the CAD model of the projector. They are not examined on the real unit.
 
 **07 Chip holder**
 - The pocket is 32.15 mm square and 0.4 mm deep. The chip surface is 0.1 mm above the plate.

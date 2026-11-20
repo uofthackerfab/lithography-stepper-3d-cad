@@ -23,6 +23,7 @@ def build():
     part += prism_x(tri, HALF_W - t, HALF_W) + prism_x(tri, -HALF_W, -HALF_W + t)
     part -= frame_slots(y0, y1, [-15, -37])
     part -= cyl("z", OPENING, -t, 0)
+    part -= box(-P.LIP_X - 0.3, P.LIP_X + 0.3, P.LIP_Y[0] - 0.3, P.LIP_Y[1] + 0.3, -3.5, 0)   # projector lip
     b = P.PLATE_BOLT
     for x in (-b, b):
         for y in (-b, b):

@@ -12,6 +12,9 @@ Collected on 2026-11-14.
 | Hacker Fab adapter plate (Onshape) | https://cad.onshape.com/documents/64016e74334e9df7f3829a37/v/b7cf6897006e1bbfe46b354b/e/0e8c1f104c4c4708545e72bb |
 | Hacker Fab base plate (Onshape) | https://cad.onshape.com/documents/052936cc5219e79ce8b1d191/w/decf2990870bd6e2bca78fa2/e/bd3bd601a477f0977cdc93cc |
 | Hacker Fab vacuum chuck (Onshape) | https://cad.onshape.com/documents/f6235112d9655ce90371982d/w/a0efdc80157be57df12af66d/e/fe48a0682c07d2cebc332aac |
+| Hacker Fab stepper CAD files (Thorlabs STEP files, objective) | https://github.com/hacker-fab/stepper_cad |
+
+The projector model (`SPEC_800-0255-A_F16D`) is in the Onshape assembly. To get it, export the full assembly as STEP. This repository reads it from `vendor/projector.brep`, which is not committed.
 
 Onshape element ids for the adapter plate: `0e8c1f104c4c4708545e72bb` (aluminium), `6aae798fd8c31fe1bc320fe1` (3D print).
 
@@ -95,6 +98,9 @@ Thorlabs drawings. Prefix each with `https://media.thorlabs.com/globalassets/ite
 | Stepwise assembly guide | https://www.stepwisedocs.com/docs/projects/open-micro-manipulator-13/guides/micro-manipulator-assembly-instructions-74 |
 | Stepper motor, 42 × 42 × 39 mm (3 in use) | https://www.amazon.ca/dp/B00W98OYE4 |
 | Printed stand (`demoStandV1.stl`). The stage base in this repository holds it. | https://github.com/koalazak/MicroManipulatorStepper/tree/stl-extras/construction/v4_3dprinting_stl/extras |
+| Hacker Fab build notes for the micro-manipulator | https://docs.hackerfab.org/home/fab-toolkit/submodules/nanopositioner/micromanipulator |
+| Motor driver TB6612FNG, 2 in a pack (3 drivers necessary) | https://www.amazon.ca/dp/B09MN94LVF |
+| Author's answer on other drivers (issue 42) | https://github.com/0x23/MicroManipulatorStepper/issues/42 |
 
 The repaired jig files `RodGrindingJigA_repaired.stl` and `RodGrindingJigB_repaired.stl` are in the source chat. Use them, not the GitHub jig files.
 

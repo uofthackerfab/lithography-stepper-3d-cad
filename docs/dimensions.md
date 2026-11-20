@@ -49,16 +49,18 @@ All dimensions are in millimetres. Links are in [RESOURCES.md](../RESOURCES.md).
 
 ## Projector: TI DLPDLCR471TPEVM
 
-- Light engine envelope 88.49 × 83.96 × 136.39 [V]. This includes the projection lens.
-- Lens face: four M2 holes on a 28 × 28 square [V], from the Hacker Fab CAD.
-- Light hole 25.4, at 2.9 from the centre of the square [V]. Direction on the real unit [U]. The adapter plate fits in four positions, thus the direction is found at assembly.
-- The two sources for the plan of the engine do not agree [E]:
-  - Hacker Fab assembly model, lens removed: 84 × 58, and 43 or less from the optical axis in each direction.
-  - TI figure, scaled: 84 × 88, with the axis 22 from one edge. Thus 66 from the axis in one direction.
-- The design is correct for the two sources: point the larger part of the engine to the front. The uprights are 55 behind the axis and the rear part is 43 or less.
-- Height above the lens face approximately 67 [E].
-- M2 thread depth in the housing [U]. Mass [U]. Length of the cables to the main board [U].
-- Mirror chip to lens face: approximately 38 [E]. Calculated from the Hacker Fab tube lengths.
+The values come from the CAD model of the light engine in the Hacker Fab assembly (`SPEC_800-0255-A_F16D`) [V].
+They are not measured on the real unit.
+
+- Engine with the lens removed: 85.0 × 58.1 in plan, 62.3 high above the lens face.
+- From the optical axis: 42.5 to each side, 28.1 to one long side, 29.9 to the other. The uprights are 55 away.
+- Lens face: four holes on a 28 × 28 square. The lens mount (a square flange with a disc) comes off with these four screws [E].
+- Mirror chip: 3.0 from the centre of the square. The adapter plate uses 2.9, as the Hacker Fab plate does.
+- A thin lip is on the side that the mirror chip is nearest to. It is 45 wide and goes 8.5 below the lens face. Small ribs are next to it.
+- The adapter plate has a slot for the lip. Thus the plate fits in one position.
+- Mirror chip to lens face: 41.4. Glass in the engine can change the optical distance by some millimetres [E].
+- Holes in the housing: 2.8 diameter in the model, 4 or more deep. Mass [U]. Length of the cables to the main board [U].
+- TI user's guide: envelope 88.49 × 83.96 × 136.39 with the projection lens.
 - Temperature at the lens face [U]. PETG or ASA is specified there.
 
 ## Main board: TI DLP046 rev B [V]
@@ -90,7 +92,7 @@ All dimensions are in millimetres. Links are in [RESOURCES.md](../RESOURCES.md).
 - Image distance of the objective: 150 from its shoulder, plus 10 for the glass of the cube.
 - With the SM1L05 and SM1L03 below the holder, the camera sensor is 118 from the cube centre.
 - The camera clamp accepts a camera front face from 106 to 115 behind the optical axis.
-- Heights above the table: chip 135, cube centre 222, projector lens face approximately 300, top of the projector approximately 400. The uprights are 500.
+- Heights above the table: chip 135, cube centre 222, projector lens face 299, top of the projector 361. The uprights are 500.
 
 ## Decisions in this design
 
@@ -104,7 +106,7 @@ All dimensions are in millimetres. Links are in [RESOURCES.md](../RESOURCES.md).
 | Two uprights behind the optical axis, 44 apart | The beamsplitter holder fills the gap. The camera arm goes between the bars. |
 | Holder split in two halves, no lid | Each half prints without supports. |
 | Printed sleeve on the camera arm | This arm has no lens. The SM1 tubes stay available for the other arms. |
-| Adapter plate separate from the bracket | The offset direction is unknown. The projector can point in four directions. |
+| Adapter plate separate from the bracket | Each part prints flat. The lip of the projector points to the front. |
 | No objective shroud | The 1.5 working distance gives no space. |
 | M3 nuts in printed pockets | No heat-set inserts and no special tool. |
 
@@ -113,8 +115,8 @@ All dimensions are in millimetres. Links are in [RESOURCES.md](../RESOURCES.md).
 | Item | Who | Status |
 |---|---|---|
 | Printer | User | Not selected. Minimum bed 170 × 120. |
-| Offset direction at the projector | User | Find at assembly. Four positions are possible. |
 | Reach of the projector cables to the main board | User | Not published. Slide the rails to the correct height at assembly. |
-| M2 thread depth in the projector | User | Not published. Try M2 × 8, then M2 × 10. |
+| Screws at the projector lens face | User | Use the four screws that held the lens mount, if they are long enough for the 6 mm plate. If not, try M2 × 8, then M2 × 10. |
+| Lens mount of the projector | User | Make sure that it comes off with its four screws. The model shows this, the real unit is not examined. |
 | All fits | User | Confirmed only after a print |
 | Slicer preview | User | Do it in the slicer of the selected printer. The geometry check found no supports necessary. |

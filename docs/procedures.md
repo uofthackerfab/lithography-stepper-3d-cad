@@ -80,23 +80,29 @@ CAUTION: The frame falls to the rear if it tilts more than approximately 13°. D
 
 Install the parts from the top to the bottom. Tighten the frame screws only after all tubes align.
 
-1. Attach the adapter plate to the projector with four M2 screws. The countersinks point down.
-2. Look into the light hole. If the mirror chip is not in the centre, turn the plate 90° and do this step again.
-3. Attach the SM1A53 flange below the plate with four M3 × 6 screws.
-4. Put the plate on the projector bracket. Turn the projector so that its larger part points to the front. Attach the plate from below.
-5. Bolt the base half of the beamsplitter holder to the inner face of the left upright.
-6. Put the cube, the tubes and the sleeve into the base half. Install the cover.
-7. Bolt the camera clamp block to the back faces of the uprights.
-8. Install the tube clamp on the objective tube. Install the board rails. Put the rails at a height where the projector cables reach the main board.
-9. Bolt the stage base to the front face of bar A, on the left. Put the micro-manipulator stand in the rim.
-10. Attach the chip holder to the end effector.
+1. Remove the four screws at the lens face of the projector. Remove the lens mount.
+
+   ![Projector from below. The round disc on the square flange is the lens mount.](img/projector_lens_mount.png)
+
+   The lens mount is the square flange with the round disc. The four screws are at its corners. The red line is the optical axis.
+
+2. Put the adapter plate on the lens face. The lip of the projector goes through the slot. The countersinks point down. Attach the plate with four M2 screws.
+3. Look into the light hole. The mirror chip is in the centre.
+4. Attach the SM1A53 flange below the plate with four M3 × 6 screws.
+5. Put the plate on the projector bracket with the slot to the front. Attach the plate from below.
+6. Bolt the base half of the beamsplitter holder to the inner face of the left upright.
+7. Put the cube, the tubes and the sleeve into the base half. Install the cover.
+8. Bolt the camera clamp block to the back faces of the uprights.
+9. Install the tube clamp on the objective tube. Install the board rails. Put the rails at a height where the projector cables reach the main board.
+10. Bolt the stage base to the front face of bar A, on the left. Put the micro-manipulator stand in the rim.
+11. Attach the chip holder to the end effector.
 
 Recommended lens tubes:
 
 | Arm | Parts, from the holder outward | Length |
 |---|---|---|
 | Objective (down) | SM1L03, SM1L05, SM1A3, objective | 21.9 mm to the objective shoulder |
-| Projector (up) | SM1V10 (collar in the holder, barrel up), SM1L10, SM1A53 | adjustable: 45 to 66 mm; 57 in the model |
+| Projector (up) | SM1V10 (collar in the holder, barrel up), SM1L10, SM1A53 | adjustable: 45 to 66 mm; 54 in the model |
 | Camera (back) | printed sleeve | 78 mm |
 
 CAUTION: The distance between the objective and the chip is 1.5 mm. Lift the stage slowly.

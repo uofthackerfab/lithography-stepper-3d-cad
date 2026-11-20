@@ -1,8 +1,8 @@
 """Part 3a. Adapter plate: projector lens face on top, SM1A53 flange below.
 
 The plate centre is the optical axis. The M2 square is 2.9 mm off centre, so
-the tube sits on the mirror chip. Turn the plate in 90 degree steps on the
-projector, and on the bracket, until both are correct.
+the tube sits on the mirror chip. A lip of the projector goes through the slot.
+Thus the plate fits on the projector in one position only.
 """
 from .. import params as P
 from ..shapes import box, cone, cyl, hexagon
@@ -25,4 +25,7 @@ def build():
     for x, y in [(r, 0), (-r, 0), (0, r), (0, -r), (b, b), (b, -b), (-b, b), (-b, -b)]:
         part -= cyl("z", P.M3_HOLE, 0, T, x, y)
         part -= hexagon("z", T - NUT_DEPTH, T, x, y)    # nuts on the projector side
+    part -= box(-P.LIP_X, P.LIP_X, P.LIP_Y[0], P.LIP_Y[1], 0, T)          # slot for the lip
+    for x0, x1 in ((-P.LIP_X, -5), (5, P.LIP_X)):                         # pockets for the ribs
+        part -= box(x0, x1, P.LIP_Y[1], P.RIB_Y, T - NUT_DEPTH, T)
     return part

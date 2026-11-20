@@ -3,11 +3,14 @@
 Each model has the correct outside dimensions. Small details are omitted.
 Sources are in docs/dimensions.md.
 """
+from pathlib import Path
+
 from build123d import Pos
 
 from . import params as P
 from .shapes import box, cone, cyl
 
+VENDOR = Path(__file__).resolve().parent.parent / "vendor" / "projector.brep"
 SM1_ID = 26.3               # bore of an SM1 tube (internal thread, major diameter)
 SM1_MALE = 26.2             # male SM1 thread, drawn 0.1 small so that mated threads do not overlap
 
@@ -67,17 +70,23 @@ def camera():
             - cyl("y", 20, 0, 4))
 
 
-def projector():
+def projector(real=False):
     """TI DLPDLCR471TPEVM light engine, lens removed. Lens face at z = 0, light hole at x = y = 0.
 
-    Plan 84 x 88 [E, TI figure]: 66 to the front, 22 to the rear. Height 67 [E].
+    Dimensions [V] from the Hacker Fab CAD model of the engine (SPEC_800-0255-A_F16D).
+    real=True loads that model from vendor/projector.brep. The file is not in the repository.
     """
-    body = box(-42, 42, -66, 22, 0, 52) - cyl("z", P.LIGHT_BORE, 0, 10)
-    fins = None
-    for i in range(12):
-        f = box(-40, 40, -62 + 7 * i, -59 + 7 * i, 52, 67)
-        fins = f if fins is None else fins + f
-    return body + fins
+    if real and VENDOR.exists():
+        from build123d import import_brep
+        o = P.DMD_OFFSET
+        engine = Pos(-23.82, 37.75 + o, -179.137) * import_brep(str(VENDOR))
+        return engine - box(-22.6, 22.6, -22.72 + o, 22.7 + o, -7, 0)   # lens mount: removed with the lens
+    o = P.DMD_OFFSET                                    # model origin is the centre of the M2 square
+    part = box(-23.2, 23.2, -31 + o, 22.6 + o, 0, 12) - cyl("z", P.LIGHT_BORE, 0, 12)
+    part += box(-42.5, 42.5, -31 + o, 27 + o, 12, 47)
+    for i in range(12):                                 # heat sink
+        part += box(-41, 41, -28 + o + 4.6 * i, -26.5 + o + 4.6 * i, 47, 62.3)
+    return part + box(-22.5, 22.5, -29.14 + o, -27.3 + o, -P.LIP_DROP, 0)   # the lip
 
 
 def main_board():
