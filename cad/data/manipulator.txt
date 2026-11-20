@@ -1,0 +1,19 @@
+actuator 1 encoder
+actuator 1 linkage
+actuator 1 motor
+actuator 1 motor horn
+actuator 1 motor mount
+actuator 2 encoder
+actuator 2 linkage
+actuator 2 motor
+actuator 2 motor horn
+actuator 2 motor mount
+actuator 3 encoder
+actuator 3 linkage
+actuator 3 motor
+actuator 3 motor horn
+actuator 3 motor mount
+base block
+end effector
+screws and pins
+stand

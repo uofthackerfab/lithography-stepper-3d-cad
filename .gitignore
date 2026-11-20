@@ -4,3 +4,4 @@ __pycache__/
 uv.lock
 step/
 vendor/
+assembly/private/

@@ -1,6 +1,6 @@
 # Assembly
 
-The file `assembly/stepper.step` contains all 35 parts in their positions. Each part has a name and a colour.
+The file `assembly/public/stepper.step` contains all parts in their positions. Each part has a name and a colour.
 
 ![Assembly with labels](img/assembly_labelled.png)
 
@@ -13,8 +13,31 @@ The file `assembly/stepper.step` contains all 35 parts in their positions. Each 
 
 ## Open the model
 
-- `assembly/stepper.step`: open it in FreeCAD, Fusion or Onshape. You can measure each distance there.
-- `assembly/stepper.glb`: open it in MeshLab or a web 3D viewer. Use it only to look.
+There are two folders:
+
+| Folder | Projector | Use |
+|---|---|---|
+| `assembly/public/` | Simple shape with the correct outside dimensions | Share it, for example on Onshape |
+| `assembly/private/` | The manufacturer's model | Most accurate. Do not share it. Git ignores this folder. |
+
+The build writes `assembly/private/` only if the file `vendor/projector.brep` is present.
+
+Each folder contains two files:
+
+- `stepper.step`: open it in FreeCAD, Fusion or Onshape. You can measure each distance there.
+- `stepper.glb`: open it in MeshLab or a web 3D viewer. Use it only to look.
+
+## Look at the model in a browser
+
+1. Go to the repository folder.
+2. Run this command:
+
+```bash
+python3 -m http.server 8765
+```
+
+3. Open `http://localhost:8765/viewer/` in a browser.
+4. Drag to turn the model. Use the buttons to change between the private and the public model.
 
 ## Build the model
 
@@ -52,12 +75,28 @@ The command prints the position of each part. It also tests each pair of parts f
 | Up | SM1V10 (collar in the holder), SM1L10, SM1A53, adapter plate, projector |
 | Rear | printed sleeve, camera |
 
-## Simplified parts
+## Source of each model
 
-- Projector: the pictures and the collision check use the real CAD model (`vendor/projector.brep`). This file is not in the repository. The STEP and GLB files contain a simple block model with the same outside dimensions.
-- Micro-manipulator: boxes for the base block, end effector, three motors, three motor mounts and the stand. The positions are from the STL files. Rods, horns and wires are not shown.
-- Main board: a plate with the correct outline and holes.
-- Screws, nuts, T-nuts, corner brackets, felt and cables are not shown.
+"Private" is the model in `assembly/private/`. "Public" is the model in `assembly/public/`.
+
+| Part | Private | Public |
+|---|---|---|
+| Printed parts | This repository | Same |
+| Micro-manipulator and stand | CAD of the project (MIT licence) | Same |
+| Motors of the micro-manipulator | STEPPERONLINE STEP file for 17HM15-0904S | Drawing of a 42 × 42 × 40 motor from the project's CAD |
+| Projector light engine | Manufacturer's model, from the Hacker Fab assembly | Simple shape |
+| Projector LED block | Simple shape [E]. No model is available. | Same |
+| SM1L03, SM1L05, SM1L10, SM1V10, SM1A53, SM1A3 | Thorlabs STEP files | Simple shapes |
+| Objective | Edmund Optics STEP file for #43-907 | Simple shape |
+| Camera | Simple shape. ZWO publishes no model of this body. Dimensions from the ZWO drawing. | Same |
+| Main board | Plate with the outline and holes of the TI layout files. TI publishes no 3D model. | Same |
+| Beamsplitter cube, 2020 bars | Simple shapes with the correct dimensions | Same |
+
+- The manufacturers' files are in `vendor/`. Git ignores this folder. Do not share these files.
+- `cad/purchased.py` puts each manufacturer's model in the position of the simple shape. The sizes agree within 0.05 mm.
+- The motor cables point away from the stand. This is the only direction in which the cable outlet is free.
+- The build does two collision checks: one with the simple shapes, one with the manufacturers' models. In the second check, the overlap of mated screw threads is ignored.
+- Screws of the frame, nuts, T-nuts, corner brackets, felt, cables and wires are not shown.
 
 ## Purchased parts that are not in the model
 

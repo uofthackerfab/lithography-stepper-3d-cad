@@ -57,10 +57,18 @@ They are not measured on the real unit.
 - Lens face: four holes on a 28 × 28 square. The lens mount (a square flange with a disc) comes off with these four screws [E].
 - Mirror chip: 3.0 from the centre of the square. The adapter plate uses 2.9, as the Hacker Fab plate does.
 - A thin lip is on the side that the mirror chip is nearest to. It is 45 wide and goes 8.5 below the lens face. Small ribs are next to it.
-- The adapter plate has a slot for the lip. Thus the plate fits in one position.
+- The LED block with its heat sinks is not in the model. It is behind the lip and goes lower than the lens face. Estimate from the TI figure and photos: 37 deep, 90 wide, 45 below the lens face [E].
+- The adapter plate ends before the lip, and the bracket is open on that side. The LED block points to the right.
 - Mirror chip to lens face: 41.4. Glass in the engine can change the optical distance by some millimetres [E].
 - Holes in the housing: 2.8 diameter in the model, 4 or more deep. Mass [U]. Length of the cables to the main board [U].
 - TI user's guide: envelope 88.49 × 83.96 × 136.39 with the projection lens.
+
+Measured by the user on the complete unit, with a ruler (2026-11-20):
+
+- Black base cover: 180 long, 122 wide. The lens centre is 61 from each side.
+- Lens centre to the top of the black base: approximately 25.
+- The two wide cables to the mirror chip: approximately 150 or a little more.
+- LED heat sink behind the front grille: approximately 20 × 20 × 20.
 - Temperature at the lens face [U]. PETG or ASA is specified there.
 
 ## Main board: TI DLP046 rev B [V]
@@ -81,7 +89,7 @@ They are not measured on the real unit.
 - End effector: 29 cube. Each outer face has two 3.0 holes, 10 apart [V], from the STL.
 - End effector centre: 47.5 from the base block origin on each axis [V].
 - Travel: 23 for each axis is given for version 3 [V]. Approximately 20 for version 4 [E].
-- Motors: 42 × 42 × 39 [V], from the user.
+- Motors: STEPPERONLINE 17HM15-0904S. Body 42.3 × 42.3 × 39.0, shaft 22 [V], from the manufacturer's STEP file. The cable outlet is 18 long, on one side, near the rear.
 - The end effector holes are plain, 8 deep [V], from the FreeCAD file.
 - The base block has no holes for a mount [V]. The documented mount is the printed stand `demoStandV1.stl`, with five M3 screws at the motor mounts.
 - Stand foot: 101 × 100, flat, no holes. The end effector top face is 127.6 above the bottom of the foot.
@@ -106,7 +114,8 @@ They are not measured on the real unit.
 | Two uprights behind the optical axis, 44 apart | The beamsplitter holder fills the gap. The camera arm goes between the bars. |
 | Holder split in two halves, no lid | Each half prints without supports. |
 | Printed sleeve on the camera arm | This arm has no lens. The SM1 tubes stay available for the other arms. |
-| Adapter plate separate from the bracket | Each part prints flat. The lip of the projector points to the front. |
+| Adapter plate separate from the bracket | Each part prints flat. |
+| LED block of the projector to the right | The holder is in front, the uprights are behind. The right side is free. |
 | No objective shroud | The 1.5 working distance gives no space. |
 | M3 nuts in printed pockets | No heat-set inserts and no special tool. |
 
@@ -118,5 +127,7 @@ They are not measured on the real unit.
 | Reach of the projector cables to the main board | User | Not published. Slide the rails to the correct height at assembly. |
 | Screws at the projector lens face | User | Use the four screws that held the lens mount, if they are long enough for the 6 mm plate. If not, try M2 × 8, then M2 × 10. |
 | Lens mount of the projector | User | Make sure that it comes off with its four screws. The model shows this, the real unit is not examined. |
+| LED block of the projector | User | Its size is an estimate. The plate and bracket do not go to that side. Make sure at assembly that the heat sinks do not touch the right upright. |
+| UV LED board | User | Hacker Fab replaces the blue LED with a UV LED board. The board is not in the inventory. Files: https://github.com/hacker-fab/stepper-v2-led |
 | All fits | User | Confirmed only after a print |
 | Slicer preview | User | Do it in the slicer of the selected printer. The geometry check found no supports necessary. |

@@ -80,16 +80,23 @@ CAUTION: The frame falls to the rear if it tilts more than approximately 13°. D
 
 Install the parts from the top to the bottom. Tighten the frame screws only after all tubes align.
 
-1. Remove the four screws at the lens face of the projector. Remove the lens mount.
+1. Prepare the projector. The Hacker Fab V2.1 build page shows a photo of each step (see [RESOURCES.md](../RESOURCES.md)).
+   1. Disconnect all cables. Make a photo before each step.
+   2. Remove the four poles and the top board.
+   3. Remove the side board and the cover.
+   4. Remove the screws and poles that hold the engine on the bottom plate. Remove the bottom plate.
+   5. Remove the four screws at the lens face. Remove the lens with its mount.
+
+   Keep the LED block, the heat sinks, the red board at the mirror chip and the two flat cables on the engine.
 
    ![Projector from below. The round disc on the square flange is the lens mount.](img/projector_lens_mount.png)
 
    The lens mount is the square flange with the round disc. The four screws are at its corners. The red line is the optical axis.
 
-2. Put the adapter plate on the lens face. The lip of the projector goes through the slot. The countersinks point down. Attach the plate with four M2 screws.
+2. Put the adapter plate on the lens face. The cut edge of the plate is at the lip of the projector. The countersinks point down. Attach the plate with four M2 screws.
 3. Look into the light hole. The mirror chip is in the centre.
 4. Attach the SM1A53 flange below the plate with four M3 × 6 screws.
-5. Put the plate on the projector bracket with the slot to the front. Attach the plate from below.
+5. Put the plate on the projector bracket. The LED block of the projector points to the right. Attach the plate from below with four M3 screws.
 6. Bolt the base half of the beamsplitter holder to the inner face of the left upright.
 7. Put the cube, the tubes and the sleeve into the base half. Install the cover.
 8. Bolt the camera clamp block to the back faces of the uprights.

@@ -1,8 +1,8 @@
 """Part 3a. Adapter plate: projector lens face on top, SM1A53 flange below.
 
 The plate centre is the optical axis. The M2 square is 2.9 mm off centre, so
-the tube sits on the mirror chip. A lip of the projector goes through the slot.
-Thus the plate fits on the projector in one position only.
+the tube sits on the mirror chip. The plate ends before the lip of the projector,
+because the LED block of the projector is on that side. The plate fits in one position.
 """
 from .. import params as P
 from ..shapes import box, cone, cyl, hexagon
@@ -20,12 +20,12 @@ def build():
         for y in (-a, a):
             part -= cyl("z", P.M2_HOLE, 0, T, x, y + P.DMD_OFFSET)
             part -= cone("z", P.M2_CSK, P.M2_HOLE, 0, (P.M2_CSK - P.M2_HOLE) / 2, x, y + P.DMD_OFFSET)
-    r, b = P.SM1A53_BOLT_R, P.PLATE_BOLT
+    r = P.SM1A53_BOLT_R
     # SM1A53 flange: M3 x 6 (1.3 mm of flange under the head). Bracket: M3 x 12.
-    for x, y in [(r, 0), (-r, 0), (0, r), (0, -r), (b, b), (b, -b), (-b, b), (-b, -b)]:
+    for x, y in [(r, 0), (-r, 0), (0, r), (0, -r)] + P.PLATE_BOLTS:
         part -= cyl("z", P.M3_HOLE, 0, T, x, y)
         part -= hexagon("z", T - NUT_DEPTH, T, x, y)    # nuts on the projector side
-    part -= box(-P.LIP_X, P.LIP_X, P.LIP_Y[0], P.LIP_Y[1], 0, T)          # slot for the lip
+    part -= box(-h, h, -h, P.LIP_Y, 0, T)                                 # no plate at the lip side
     for x0, x1 in ((-P.LIP_X, -5), (5, P.LIP_X)):                         # pockets for the ribs
-        part -= box(x0, x1, P.LIP_Y[1], P.RIB_Y, T - NUT_DEPTH, T)
+        part -= box(x0, x1, P.LIP_Y, P.RIB_Y, T - NUT_DEPTH, T)
     return part

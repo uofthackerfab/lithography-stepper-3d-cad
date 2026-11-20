@@ -35,8 +35,11 @@ Each picture shows the part in its print orientation.
 | `cad/build.py` | Builds and checks all parts |
 | `cad/render.py` | Makes the pictures in `docs/img/` |
 | [docs/assembly.md](docs/assembly.md) | The complete machine: model, views, main dimensions |
-| `assembly/` | STEP and GLB files of the complete machine |
+| `assembly/public/` | STEP and GLB files of the complete machine, with a simple projector shape. These can be shared. |
+| `assembly/private/` | The same files with the manufacturer's projector model. Git ignores this folder. Do not share it. |
 | `cad/assembly.py`, `cad/purchased.py` | Positions of all parts; models of the purchased parts |
+| `cad/data/` | CAD of the micro-manipulator (MIT licence), converted by `cad/import_manipulator.py` |
+| `viewer/` | Web page that shows the complete machine in 3D. See [docs/assembly.md](docs/assembly.md). |
 | [docs/parts.md](docs/parts.md) | Part list, print settings, screws |
 | [docs/procedures.md](docs/procedures.md) | Test piece, print, and assembly procedures |
 | [docs/dimensions.md](docs/dimensions.md) | Dimensions with their sources, and open items |

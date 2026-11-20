@@ -113,13 +113,15 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 
 **03 Adapter plate and projector bracket**
 - The light hole is 2.9 mm from the centre of the M2 hole square.
-- The projector has a thin lip that goes 8.5 mm below its lens face. The plate has a slot for the lip, and the bracket has a pocket.
-- Thus the plate fits on the projector in one position. Put the slot to the front on the bracket.
-- These dimensions are from the CAD model of the projector. They are not examined on the real unit.
+- The projector has a lip beside its lens face. The LED block and its heat sinks are behind the lip. They go lower than the lens face.
+- Thus the plate ends before the lip, and the bracket is open on the right side.
+- The plate fits on the projector in one position. On the bracket, the cut edge of the plate points to the right.
+- The housing dimensions are from the CAD model of the projector. The size of the LED block is an estimate from photos.
 
 **07 Chip holder**
 - The pocket is 32.15 mm square and 0.4 mm deep. The chip surface is 0.1 mm above the plate.
 - The screw heads are below the chip.
+- A 1 mm pocket in the bottom face gives space for a band collet of the stage. The collet is 0.5 mm above the end effector.
 - Hold the chip with polyimide tape on two corners. The tape is thinner than the 1.5 mm space below the objective.
 
 **08 Stage base**

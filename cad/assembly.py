@@ -2,7 +2,8 @@
 
 Run from the repository root:  uv run --with pyvista python -m cad.assembly
 
-Output: assembly/stepper.step, assembly/stepper.glb, docs/img/assembly_*.png
+Output: assembly/public/ (simple projector), assembly/private/ (real projector, not in git),
+        docs/img/assembly_*.png
 Axes: x = right, y = rear, z = up. The optical axis is x = y = 0. The table is z = 0.
 """
 from itertools import combinations
@@ -13,7 +14,7 @@ from build123d import Color, Compound, Pos, Rot, export_gltf, export_step
 from . import params as P
 from . import purchased as B
 from .parts import (adapter_plate, beamsplitter_holder as holder, board_rail, camera_clamp,
-                    camera_sleeve, chip_holder, projector_bracket, stage_base, tube_clamp)
+                    camera_sleeve, chip_holder, projector_bracket, side_board_holder, stage_base, tube_clamp)
 from .shapes import box
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -39,14 +40,22 @@ V10_TRAVEL = PLATE_Z - 5.56 - L10 - (V10_Z + 13.5)    # exposed barrel; the limi
 CAMERA_Y = ARM - 6.5                         # front face of the camera collar
 BAR_TOP = P.BAR                              # the uprights stand on bar A
 RAIL_Z = (CUBE_Z + 85, CUBE_Z + 85 + 115)    # main board rails
+SIDE_Z = 510.0                               # screws of the side board; the uprights end at 520
 CLAMP_Z = SHOULDER + 1.0                     # the clamp holds the SM1L05
 
 FRAME, PRINTED, OPTICS, CAMERA, PROJECTOR, BOARD, STAGE, GLASS = (
     "#b8bcc2", "#3d4756", "#1c1c1e", "#b3261e", "#6f7d8c", "#1f7a3d", "#c98a2b", "#9fd6e8")
 
 
+TURN = Rot(0, 0, 90)                          # the lip and LED block of the projector point to the right
+
+
 def parts(real=False):
-    """Return [(name, colour, solid)] with every solid in its final position."""
+    """Return [(name, colour, solid)] with every solid in its final position.
+
+    real=True uses the manufacturers' CAD files in vendor/, where they are present.
+    """
+    B.REAL = real
     y0, y1 = P.AXIS_TO_FRAME, P.FRAME_BACK
     yc = (y0 + y1) / 2
     out = [
@@ -59,6 +68,7 @@ def parts(real=False):
         ("chip", GLASS, box(-P.CHIP / 2, P.CHIP / 2, -P.CHIP / 2, P.CHIP / 2, CHIP_TOP - P.CHIP_T, CHIP_TOP)),
         ("objective 10X", OPTICS, Pos(0, 0, SHOULDER) * B.objective()),
         ("SM1L05", OPTICS, Pos(0, 0, SHOULDER) * B.lens_tube(L05)),
+        ("SM1A3", OPTICS, Pos(0, 0, SHOULDER) * B.sm1a3()),
         ("SM1L03", OPTICS, Pos(0, 0, SHOULDER + L05) * B.lens_tube(L03)),
         ("tube clamp", PRINTED, Pos(0, 0, CLAMP_Z) * tube_clamp.build()),
         ("beamsplitter holder base", PRINTED, Pos(0, 0, CUBE_Z) * holder.base()),
@@ -72,27 +82,40 @@ def parts(real=False):
         ("SM1V10", OPTICS, Pos(0, 0, V10_Z) * B.sm1v10(V10_TRAVEL)),
         ("SM1L10", OPTICS, Pos(0, 0, V10_Z + 13.5 + V10_TRAVEL) * B.lens_tube(L10)),
         ("SM1A53 flange", OPTICS, Pos(0, 0, PLATE_Z - 5.56) * B.sm1a53()),
-        ("adapter plate", PRINTED, Pos(0, 0, PLATE_Z) * adapter_plate.build()),
+        ("adapter plate", PRINTED, Pos(0, 0, PLATE_Z) * TURN * adapter_plate.build()),
         ("projector bracket", PRINTED, Pos(0, 0, PLATE_Z) * projector_bracket.build()),
-        ("projector light engine", PROJECTOR, Pos(0, 0, FACE_Z) * B.projector(real)),
+        ("projector light engine", PROJECTOR, Pos(0, 0, FACE_Z) * TURN * B.projector(real)),
+        ("projector LED block [E]", PROJECTOR, Pos(0, 0, FACE_Z) * TURN * B.led_block()),
         ("board rail lower", PRINTED, Pos(0, 0, RAIL_Z[0]) * board_rail.build()),
         ("board rail upper", PRINTED, Pos(0, 0, RAIL_Z[1]) * board_rail.build()),
         ("main board", BOARD,
          Pos(0, y1 + board_rail.T + P.BOARD_STANDOFF, sum(RAIL_Z) / 2) * B.main_board()),
+        ("side board holder", PRINTED, Pos(0, 0, SIDE_Z) * side_board_holder.build()),
+        ("side board (HDMI)", BOARD,
+         Pos(0, y1 + side_board_holder.T + P.BOARD_STANDOFF, SIDE_Z) * B.side_board()),
     ]
     ee = 47.5                                              # end effector centre in base block coordinates
     for name, solid in B.manipulator().items():
-        colour = PRINTED if name in ("stand",) else STAGE
+        colour = PRINTED if name == "stand" else OPTICS if "motor" == name[-5:] or "screws" in name else STAGE
         out.append((f"stage: {name}", colour, Pos(-ee, -ee, BLOCK_Z) * solid))
     return out
 
 
-def collisions(items, limit=1.0):
+# Screw threads: in the manufacturers' models the two threads of a joint overlap.
+THREADS = [{"SM1L05", "SM1A3"}, {"SM1L05", "SM1L03"}, {"SM1V10", "SM1L10"}, {"SM1L10", "SM1A53 flange"},
+           {"SM1A3", "objective 10X"}]
+
+
+def collisions(items, limit=1.0, skip=()):
     """Return [(name, name, volume)] for each pair that overlaps by more than `limit` mm3."""
     boxes = [s.bounding_box() for _, _, s in items]
     bad = []
     for i, j in combinations(range(len(items)), 2):
         a, b = boxes[i], boxes[j]
+        if {items[i][0], items[j][0]} in skip:
+            continue
+        if items[i][0].startswith("stage:") and items[j][0].startswith("stage:"):
+            continue                                       # the manipulator is one checked assembly
         if (a.min.X > b.max.X or b.min.X > a.max.X or a.min.Y > b.max.Y or b.min.Y > a.max.Y
                 or a.min.Z > b.max.Z or b.min.Z > a.max.Z):
             continue
@@ -119,10 +142,10 @@ def render(items, out):
             with tempfile.TemporaryDirectory() as d:
                 export_stl(solid, f"{d}/a.stl", tolerance=0.05, angular_tolerance=0.3)
                 meshes.append((colour, pv.read(f"{d}/a.stl")))
-    labels = {"projector light engine": "projector", "main board": "main board", "SM1L10": "lens tubes",
+    labels = {"projector light engine": "projector", "main board": "main board", "side board (HDMI)": "side board", "SM1L10": "lens tubes",
               "beamsplitter holder cover": "beamsplitter holder (cube inside)", "camera ASI174MM": "camera",
-              "objective 10X": "10X objective", "chip": "chip", "stage: motor X": "micro-manipulator",
-              "stage base": "stage base", "projector bracket": "projector bracket",
+              "objective 10X": "10X objective", "chip": "chip", "stage: base block": "micro-manipulator",
+              "stage base": "stage base", "projector bracket": "projector bracket", "projector LED block [E]": "LED block (estimate)",
               "upright right": "2020 frame", "tube clamp": "tube clamp", "camera clamp block": "camera clamp"}
     centres = {n: s.bounding_box().center() for n, _, s in items if n in labels}
     views = {"iso": (-55, 12), "front": (0, 0), "right": (90, 0), "rear": (125, 12), "labelled": (-55, 12)}
@@ -151,6 +174,18 @@ def render(items, out):
         p.close()
 
 
+def write(items, out):
+    """Write stepper.step and stepper.glb to the folder `out`."""
+    solids = []
+    for name, colour, s in items:
+        s.label, s.color = name, Color(colour)
+        solids.append(s)
+    out.mkdir(parents=True, exist_ok=True)
+    asm = Compound(label="lithography stepper", children=solids)
+    export_step(asm, str(out / "stepper.step"))
+    export_gltf(asm, str(out / "stepper.glb"), binary=True, linear_deflection=0.1, angular_deflection=0.5)
+
+
 def main():
     items = parts()
     print(f"{'part':34s} {'x':>15s} {'y':>15s} {'z':>15s}")
@@ -159,22 +194,18 @@ def main():
         print(f"{name:34s} {b.min.X:7.1f}..{b.max.X:6.1f} {b.min.Y:7.1f}..{b.max.Y:6.1f} {b.min.Z:7.1f}..{b.max.Z:6.1f}")
     print(f"\ncube centre z = {CUBE_Z:.1f}   lens face z = {FACE_Z:.1f}   camera front y = {CAMERA_Y:.1f}"
           f"   SM1V10 travel used = {V10_TRAVEL:.1f} of 20.6")
-    real = parts(real=True) if B.VENDOR.exists() else items    # the real projector model, if present
-    print("collision check with", "the real projector model" if real is not items else "the simple projector model")
-    bad = collisions(real)
+    bad = collisions(items)                                 # simple models: threads do not overlap
+    real = parts(real=True) if B.VENDOR_DIR.exists() else items
+    if real is not items:                                   # manufacturers' models, if present
+        print("second collision check, with the manufacturers' models in vendor/")
+        bad += [c for c in collisions(real, skip=THREADS) if c not in bad]
     for a, b, vol in bad:
         print(f"COLLISION  {a}  /  {b}  {vol:.0f} mm3")
     print("no collisions" if not bad else f"{len(bad)} collisions")
 
-    solids = []
-    for name, colour, s in items:
-        s.label, s.color = name, Color(colour)
-        solids.append(s)
-    out = ROOT / "assembly"
-    out.mkdir(exist_ok=True)
-    asm = Compound(label="lithography stepper", children=solids)
-    export_step(asm, str(out / "stepper.step"))
-    export_gltf(asm, str(out / "stepper.glb"), binary=True)
+    write(items, ROOT / "assembly" / "public")              # simple projector model: can be shared
+    if real is not items:
+        write(real, ROOT / "assembly" / "private")           # manufacturer's projector model: do not share
     render(real, ROOT / "docs" / "img")
     return 1 if bad else 0
 

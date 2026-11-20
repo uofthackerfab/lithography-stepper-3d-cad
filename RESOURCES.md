@@ -12,6 +12,8 @@ Collected on 2026-11-14.
 | Hacker Fab adapter plate (Onshape) | https://cad.onshape.com/documents/64016e74334e9df7f3829a37/v/b7cf6897006e1bbfe46b354b/e/0e8c1f104c4c4708545e72bb |
 | Hacker Fab base plate (Onshape) | https://cad.onshape.com/documents/052936cc5219e79ce8b1d191/w/decf2990870bd6e2bca78fa2/e/bd3bd601a477f0977cdc93cc |
 | Hacker Fab vacuum chuck (Onshape) | https://cad.onshape.com/documents/f6235112d9655ce90371982d/w/a0efdc80157be57df12af66d/e/fe48a0682c07d2cebc332aac |
+| Hacker Fab Stepper V2.1 build page (photos of each projector step) | https://docs.hackerfab.org/home/fab-toolkit/lithography-stepper/lithography-stepper-v2.1+-build |
+| Hacker Fab UV LED board files | https://github.com/hacker-fab/stepper-v2-led |
 | Hacker Fab stepper CAD files (Thorlabs STEP files, objective) | https://github.com/hacker-fab/stepper_cad |
 
 The projector model (`SPEC_800-0255-A_F16D`) is in the Onshape assembly. To get it, export the full assembly as STEP. This repository reads it from `vendor/projector.brep`, which is not committed.
@@ -29,12 +31,14 @@ Onshape element ids for the adapter plate: `0e8c1f104c4c4708545e72bb` (aluminium
 | ZWO ASI174MM manual (drawing on page 17) | https://cdn.shopify.com/s/files/1/0652/6245/2965/files/ZWO-ASI174MM-Manual.pdf |
 | ZWO ASI174MM mechanical diagram | https://i.zwoastro.com/wp-content/uploads/2022/07/85140bf03e5491a08424460f8f8ba675.jpg |
 | ZWO ASI174MM manual (APM copy) | https://www.apm-telescopes.net/downloads/manuals/ASI174MM.pdf |
+| ZWO STEP files (none for the ASI174MM body) | https://www.zwoastro.com/software/step-files-for-zwo-products/ |
+| Stepper motor 17HM15-0904S, manufacturer's page (STEP file: download by hand) | https://www.omc-stepperonline.com/index.php?route=product/search&search=17HM15-0904S |
 | Edmund 10X DIN Plan objective, #43-907 | https://www.edmundoptics.com/p/10x-din-plan-commercial-grade-objective/5386/ |
 | Thorlabs SM1 tube catalogue page | https://thorlabs.com/catalogpages/V21/152.PDF |
 | Thorlabs CP90F (shows the 1.2 inch tube bore) | https://www.thorlabs.de/catalogpages/Obsolete/2019/CP90F-F.pdf |
 | 2020 extrusion datasheet (copy) | https://fab.academany.org/2021/labs/agrilab/students/antonio-anaya/files/week10/profile_alum_2020_datasheet.pdf |
 
-Thorlabs drawings. Prefix each with `https://media.thorlabs.com/globalassets/items/s/sm/sm1/`.
+Thorlabs drawings. Prefix each with `https://media.thorlabs.com/globalassets/items/s/sm/sm1/`. For the STEP file, replace `.pdf` with `.step`.
 
 | Part | Drawing |
 |---|---|
