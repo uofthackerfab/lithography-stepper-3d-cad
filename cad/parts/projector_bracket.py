@@ -14,7 +14,7 @@ HALF_W = 48.0               # wider than the bars: the gusset clears the screw h
 Y_FRONT = -40.0
 DROP = 47.0                 # leg length below the top face
 X_OPEN = -22.0              # no bracket to the left of this line in front of the legs (LED block)
-LEG_TOP = -21.0             # top of the left leg: 7 below the heat sink (measured, +/- 2)
+LEG_TOP = -21.0             # top of the left leg: 9 below the heat sink (measured, +/- 1)
 WALL_DROP = 39.0            # the rear wall ends 1.8 above the beamsplitter holder
 SLOTS = (-15, -37)          # M5 screws, below the top face
 

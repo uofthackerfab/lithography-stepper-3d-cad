@@ -72,6 +72,7 @@ Thorlabs drawings. Prefix each with `https://media.thorlabs.com/globalassets/ite
 | Flange SM1A53 | 1 | https://www.thorlabs.com/item/SM1A53 |
 | UV LED, Lumileds L1F3-U400200012000 | 4 | https://www.digikey.com/en/products/detail/lumileds/L1F3-U400200012000/7389568 |
 | Molex Pico-SPOX 10-position connector | 3 | https://www.digikey.ca/en/products/detail/molex/0874371043/717647 |
+| Solder paste, Sn63/Pb37 T4 no-clean, 30 g (for the UV LED board) | 1 | https://www.amazon.ca/dp/B0BH4HRWGX |
 | Power supply, 19 V 4.74 A (Rolada, 7.4 × 5.0 mm plug) | 1 | https://www.amazon.ca/dp/B08LVQHB1Y |
 | Plug adapter cable, 7.4 × 5.0 mm female to 5.5 × 2.5 mm male, for the projector socket | 2 | https://www.amazon.ca/dp/B0BR852CG9 |
 | Power supply, 12 V | 1 | https://www.amazon.com/dp/B01GEA8PQA |

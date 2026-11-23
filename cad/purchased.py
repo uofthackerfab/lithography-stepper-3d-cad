@@ -138,7 +138,7 @@ SINK_BASE = 35.0            # lens axis to the base of each side heat sink: the 
 SINK_TOP = -30.0            # the heat sinks start this far from the lens axis (y) [E], +/- 3
 
 
-MOUNT = 5.0                 # lens mount, thickness [E]: 3 to 6.5 in the projector CAD
+MOUNT = 3.0                 # lens mount, thickness: the user measured 14 from its front to the wide block; the CAD gives 11 for the block
 
 
 def led_block():

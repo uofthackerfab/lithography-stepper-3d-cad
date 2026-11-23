@@ -77,7 +77,7 @@ LED block of the open projector (2026-11-22). R = measured by the user with a ru
 
 - Three heat sinks, Alpha UB35-25B: base 35 × 35, height 25 [V], https://www.alphanovatech.com/en/c_ub35e.html
 - The wide black block behind the lens is 83 wide (R). The CAD model gives 84: its sides are 41.6 (left) and 42.4 (right) from the lens axis.
-- "Front of the lens mount" is the flat face where the lens tube enters the black block. It is 3 to 6.5 in front of the lens face [E], projector CAD. The model uses 5.
+- "Front of the lens mount" is the flat face where the lens tube enters the black block. It is 3 in front of the lens face: 14 from this face to the front of the wide block (R), less 11 for the block in the projector CAD.
 - Right heat sink (seen from behind the projector): its front edge is 42 past the front of the lens mount (R). Its fins end 60 from the lens axis (R).
 - Left heat sink: its front edge is 15 past the front of the lens mount (R). Its fins end 60 from the lens axis (R).
 - Front heat sink: on the centre line. Its fins end 82 past the front of the lens mount (R).
