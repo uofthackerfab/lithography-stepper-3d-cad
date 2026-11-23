@@ -25,13 +25,13 @@ View from above:
         back
    [ camera clamp ]         on the back faces of the uprights
    [bar]  sleeve  [bar]     two uprights, 44 mm apart
-          cube              optical axis, 55 mm in front of the uprights
+          cube              optical axis, 64 mm in front of the uprights
         light trap
         front
 ```
 
 - The frame has two vertical 2020 bars (uprights). The clear distance between them is 44.0 mm.
-- The optical axis is vertical. It is 55 mm in front of the uprights, on the centre line between them.
+- The optical axis is vertical. It is 64 mm in front of the uprights, on the centre line between them.
 - The camera arm goes back between the uprights. The light trap points to the front.
 
 ## Part list
@@ -110,7 +110,7 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 - The camera lies in the saddle. Slide it to set focus, then tighten the cap.
 - The camera nose must stay in the closed ring. The ring blocks room light.
 - Turn the camera until its ports point up. The ports are in the rear 10 mm of the body, behind the cap.
-- The block is large (approximately 290 cm³). Its print time is long.
+- The block is large (approximately 240 cm³). Its print time is long.
 
 **03 Adapter plate and projector bracket**
 - The light hole is 2.9 mm from the centre of the M2 hole square.

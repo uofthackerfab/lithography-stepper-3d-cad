@@ -14,8 +14,7 @@ HALF_W = 48.0               # wider than the bars: the gusset clears the screw h
 Y_FRONT = -40.0
 DROP = 47.0                 # leg length below the top face
 X_OPEN = -22.0              # no bracket to the left of this line in front of the legs (LED block)
-LEG_TOP = -28.0             # top of the left leg: 14 below the heat sink (measured, +/- 3)
-X_SINK = -26.0              # the heat sink is to the left of this line [E]: 30, +/- 3
+LEG_TOP = -21.0             # top of the left leg: 7 below the heat sink (measured, +/- 2)
 WALL_DROP = 39.0            # the rear wall ends 1.8 above the beamsplitter holder
 SLOTS = (-15, -37)          # M5 screws, below the top face
 
@@ -25,8 +24,7 @@ def build():
     g = P.UPRIGHT_GAP / 2 + 1                          # 1 mm clear of the beamsplitter holder
     part = box(X_OPEN, HALF_W, Y_FRONT, y1, -t, 0)     # top plate: right, front and rear of the tube
     part += box(g, HALF_W, y0, y1, -DROP, 0)           # right leg
-    part += box(-HALF_W, X_SINK, y0, y1, -DROP, LEG_TOP)   # left leg, below the heat sink
-    part += box(X_SINK, -g, y0, y1, -DROP, 0)          # full height beside the heat sink
+    part += box(-HALF_W, -g, y0, y1, -DROP, LEG_TOP)   # left leg, below the heat sink
     part += box(-g, g, y0, y1, -WALL_DROP, 0)          # rear wall: joins the left leg to the plate
     tri = [(y0, -t), (y0, -DROP), (Y_FRONT + 10, -t)]
     part += prism_x(tri, HALF_W - t, HALF_W)           # one gusset, on the right

@@ -53,7 +53,7 @@ The values come from the CAD model of the light engine in the Hacker Fab assembl
 They are not measured on the real unit.
 
 - Engine with the lens removed: 85.0 × 58.1 in plan, 62.3 high above the lens face.
-- From the optical axis: 42.5 to each side, 28.1 to one long side, 29.9 to the other. The uprights are 55 away.
+- From the optical axis: 42.5 to each side, 28.1 to one long side, 29.9 to the other. The uprights are 64 away.
 - Lens face: four holes on a 28 × 28 square. The lens mount (a square flange with a disc) comes off with these four screws [E].
 - Mirror chip: 3.0 from the centre of the square. The adapter plate uses 2.9, as the Hacker Fab plate does.
 - A thin lip is on the side that the mirror chip is nearest to. It is 45 wide and goes 8.5 below the lens face. Small ribs are next to it.
@@ -76,10 +76,11 @@ LED block of the open projector (2026-11-22). R = measured by the user with a ru
 - Three heat sinks, Alpha UB35-25B: base 35 × 35, height 25 [V], https://www.alphanovatech.com/en/c_ub35e.html
 - The wide black block behind the lens is 83 wide (R). The CAD model gives 84: its sides are 41.6 (left) and 42.4 (right) from the lens axis.
 - "Front of the lens mount" is the flat face where the lens tube enters the black block. It is 3 to 6.5 in front of the lens face [E], projector CAD. The model uses 5.
-- Right heat sink (seen from behind the projector): its front edge is 42 past the front of the lens mount (R). Its fins end approximately 56 from the lens axis (P).
-- Left heat sink: its front edge is 15 past the front of the lens mount (R). Its fins end approximately 57 from the lens axis (P).
+- Right heat sink (seen from behind the projector): its front edge is 42 past the front of the lens mount (R). Its fins end 60 from the lens axis (R).
+- Left heat sink: its front edge is 15 past the front of the lens mount (R). Its fins end 60 from the lens axis (R).
 - Front heat sink: on the centre line. Its fins end 82 past the front of the lens mount (R).
 - All three start approximately 30 from the lens axis and end approximately 65 from it, on the lip side (P).
+- Width across the fins of the two side heat sinks: 120 (R). Thus each side ends 60 from the lens axis.
 - Fins of the side heat sinks: 22 long (R). This agrees with the data sheet: 25 less the 3 base.
 
 ## Main board: TI DLP046 rev B [V]
@@ -132,6 +133,7 @@ LED block of the open projector (2026-11-22). R = measured by the user with a ru
 | Holder split in two halves, no lid | Each half prints without supports. |
 | Printed sleeve on the camera arm | This arm has no lens. The SM1 tubes stay available for the other arms. |
 | Adapter plate separate from the bracket | Each part prints flat. |
+| Optical axis 64 in front of the uprights | One heat sink of the projector points to the rear and ends 60 from the axis. The first value was 55. |
 | LED block of the projector to the left | The holder is in front, the uprights are behind. Thus the block points to a side. To the left, the heat sink that points to the rear is above the bracket leg. To the right, it is at the height of the leg. |
 | No objective shroud | The 1.5 working distance gives no space. |
 | M3 nuts in printed pockets | No heat-set inserts and no special tool. |
@@ -144,7 +146,6 @@ LED block of the open projector (2026-11-22). R = measured by the user with a ru
 | Reach of the projector cables to the main board | User | Not published. Slide the rails to the correct height at assembly. |
 | Screws at the projector lens face | User | Use the four screws that held the lens mount, if they are long enough for the 6 mm plate. If not, try M2 × 8, then M2 × 10. |
 | Lens mount of the projector | User | Make sure that it comes off with its four screws. The model shows this, the real unit is not examined. |
-| Left heat sink of the projector | User | Its fins end approximately 57 from the lens axis [E, ±2]. The left upright is at 55. Measure the gap between the fins and the left side of the black block behind the lens. If the gap is more than 12, make this heat sink shorter. Parts 03 do not change. |
 | UV LED board | User | Hacker Fab replaces the blue LED with a UV LED board. The board is not in the inventory. Files: https://github.com/hacker-fab/stepper-v2-led |
 | All fits | User | Confirmed only after a print |
 | Slicer preview | User | Do it in the slicer of the selected printer. The geometry check found no supports necessary. |

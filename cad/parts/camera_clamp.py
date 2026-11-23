@@ -10,7 +10,7 @@ from ..shapes import box, cyl, frame_slots
 
 BORE = P.CAMERA_OD + 0.5
 Y0 = P.FRAME_BACK
-Y_RING = Y0 + 31            # camera nose can start here
+Y_RING = 106.0              # camera nose can start here: 5.7 in front of the focus position
 Y_SADDLE = Y_RING + 12
 Y_END = Y_SADDLE + 40
 HALF_W = 42.0

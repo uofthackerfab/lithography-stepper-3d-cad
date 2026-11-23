@@ -20,8 +20,8 @@ CLEAR_APERTURE = 24.0   # light opening in the printed walls [E]
 BAR = 20.0              # [V]
 UPRIGHT_GAP = 44.0      # clear distance between the two uprights
 UPRIGHT_X = UPRIGHT_GAP / 2 + BAR / 2   # 32: upright centre, each side of the axis
-AXIS_TO_FRAME = 55.0    # optical axis to the front face of the uprights
-FRAME_BACK = AXIS_TO_FRAME + BAR        # 75: back face of the uprights
+AXIS_TO_FRAME = 64.0    # optical axis to the front face of the uprights. A heat sink of the projector ends 60 from the axis.
+FRAME_BACK = AXIS_TO_FRAME + BAR        # 84: back face of the uprights
 
 # --- Screws ---
 M5_HOLE = 5.5
