@@ -79,7 +79,7 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 
 | Joint | Screw | Qty |
 |---|---|---|
-| Printed part to frame | M5 × 12 and T-nut | 14 |
+| Printed part to frame | M5 × 12 and T-nut | 13 |
 | Board rail and side board holder to upright | M5 × 8 and T-nut | 6 |
 | Beamsplitter holder, base to cover | M3 × 20 and nut | 8 |
 | Tube clamp pinch screw | M3 × 16 and nut | 1 |
@@ -90,7 +90,7 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 | Adapter plate to projector | M2 × 8 countersunk | 4 |
 | Chip holder to end effector | M3 × 8 countersunk, no nut | 2 |
 
-- The Taiss kit contains 20 M5 × 12 screws. Six are spares.
+- The Taiss kit contains 20 M5 × 12 screws. Seven are spares.
 - At the projector, use the four screws that held the lens mount if they are long enough. If not, try M2 × 8, then M2 × 10. Do not use force.
 - The end effector holes are plain 3.0 mm holes, 8 mm deep. The M3 screws cut their own thread in the plastic.
 - The corner bracket kit contains 40 more M5 × 8 screws and 40 T-nuts. Its T-nuts enter only from the end of a bar.
@@ -115,9 +115,11 @@ A geometry check of each STL file found only small bridges (nut pockets and scre
 **03 Adapter plate and projector bracket**
 - The light hole is 2.9 mm from the centre of the M2 hole square.
 - The projector has a lip beside its lens face. The LED block and its heat sinks are behind the lip. They go lower than the lens face.
-- Thus the plate ends before the lip, and the bracket is open on the right side.
-- The plate fits on the projector in one position. On the bracket, the cut edge of the plate points to the right.
-- The housing dimensions are from the CAD model of the projector. The size of the LED block is an estimate from photos.
+- Thus the plate ends before the lip, and the bracket is open on the left side.
+- The plate fits on the projector in one position. On the bracket, the cut edge of the plate points to the left.
+- One heat sink of the LED block points to the rear. It is above the left leg of the bracket. Thus the left leg is short and has one screw. A rear wall joins it to the plate.
+- Print the bracket with support below the left leg.
+- The housing dimensions are from the CAD model of the projector. The positions of the heat sinks are from photos of the open projector (±3).
 
 **07 Chip holder**
 - The pocket is 32.15 mm square and 0.4 mm deep. The chip surface is 0.1 mm above the plate.

@@ -47,7 +47,7 @@ FRAME, PRINTED, OPTICS, CAMERA, PROJECTOR, BOARD, STAGE, GLASS = (
     "#b8bcc2", "#3d4756", "#1c1c1e", "#b3261e", "#6f7d8c", "#1f7a3d", "#c98a2b", "#9fd6e8")
 
 
-TURN = Rot(0, 0, 90)                          # the lip and LED block of the projector point to the right
+TURN = Rot(0, 0, -90)                         # the lip and LED block of the projector point to the left
 
 
 def parts(real=False):

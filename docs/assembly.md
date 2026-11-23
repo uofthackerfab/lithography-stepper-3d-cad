@@ -88,7 +88,7 @@ The command prints the position of each part. It also tests each pair of parts f
 | Micro-manipulator and stand | CAD of the project (MIT licence) | Same |
 | Motors of the micro-manipulator | STEPPERONLINE STEP file for 17HM15-0904S | Drawing of a 42 × 42 × 40 motor from the project's CAD |
 | Projector light engine | Manufacturer's model, from the Hacker Fab assembly | Simple shape |
-| Projector LED block | Simple shape [E]. No model is available. | Same |
+| Projector LED block | Simple shapes for the body and the three heat sinks [E], from photos. No model is available. | Same |
 | SM1L03, SM1L05, SM1L10, SM1V10, SM1A53, SM1A3 | Thorlabs STEP files | Simple shapes |
 | Objective | Edmund Optics STEP file for #43-907 | Simple shape |
 | Camera | Simple shape. ZWO publishes no model of this body. Dimensions from the ZWO drawing. | Same |

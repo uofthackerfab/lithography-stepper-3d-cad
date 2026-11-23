@@ -132,14 +132,31 @@ def projector(real=False):
     return part + box(-22.5, 22.5, -29.14 + o, -27.3 + o, -P.LIP_DROP, 0)   # the lip
 
 
-def led_block():
-    """LED block of the projector, with heat sinks [E]. Same axes as projector().
+SINK = 35.0                 # Alpha UB35-25B heat sink: 35 x 35 base, 25 high [V]
+SINK_H = 25.0
+SINK_BASE = 35.0            # lens axis to the base of each side heat sink: the user measured 120 across both (2026-11-23)
+SINK_TOP = -30.0            # the heat sinks start this far from the lens axis (y) [E], +/- 3
 
-    The CAD model of the engine does not contain it. Size from the TI figure and from photos:
-    it starts at the lip, goes 37 away from the engine and 45 below the lens face.
+
+MOUNT = 5.0                 # lens mount, thickness [E]: 3 to 6.5 in the projector CAD
+
+
+def led_block():
+    """LED block of the projector with its three heat sinks. Same axes as projector().
+
+    The CAD model of the engine does not contain it. Along z, the user measured the heat sinks
+    with a ruler from the front of the lens mount (2026-11-22). The other positions are from
+    photos of the open projector [E], +/- 3.
+    x = right side of the projector, -y = away from the lens axis, -z = the direction of the light.
     """
     o = P.DMD_OFFSET
-    return box(-45, 45, -66 + o, -31.1 + o, -45, 47)
+    y0, y1 = SINK_TOP - SINK, SINK_TOP
+    zr, zl, zf = -(42 + MOUNT), -(15 + MOUNT), -(82 + MOUNT)    # measured: 42, 15 and 82 from the mount
+    body = box(-SINK_BASE, SINK_BASE, -62, -31.1 + o, zf + SINK_H, 60)
+    right = box(SINK_BASE, SINK_BASE + SINK_H, y0, y1, zr, zr + SINK)
+    left = box(-SINK_BASE - SINK_H, -SINK_BASE, y0, y1, zl, zl + SINK)
+    front = box(-SINK / 2, SINK / 2, y0, y1, zf, zf + SINK_H)
+    return body + right + left + front
 
 
 def main_board():

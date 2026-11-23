@@ -96,7 +96,8 @@ Install the parts from the top to the bottom. Tighten the frame screws only afte
 2. Put the adapter plate on the lens face. The cut edge of the plate is at the lip of the projector. The countersinks point down. Attach the plate with four M2 screws.
 3. Look into the light hole. The mirror chip is in the centre.
 4. Attach the SM1A53 flange below the plate with four M3 × 6 screws.
-5. Put the plate on the projector bracket. The LED block of the projector points to the right. Attach the plate from below with four M3 screws.
+5. Attach the projector bracket to the uprights: two M5 screws at the right, one at the left. Do this before the projector is on the bracket. The LED block will cover the left screw.
+   Then put the plate on the projector bracket. The LED block of the projector points to the left. Attach the plate from below with four M3 screws.
 6. Bolt the base half of the beamsplitter holder to the inner face of the left upright.
 7. Put the cube, the tubes and the sleeve into the base half. Install the cover.
 8. Bolt the camera clamp block to the back faces of the uprights.

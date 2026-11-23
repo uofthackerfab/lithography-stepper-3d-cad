@@ -8,7 +8,7 @@ from pathlib import Path
 import trimesh
 from build123d import Pos, Rot, export_step, export_stl
 
-from .parts import (adapter_plate, baffle_ring, beamsplitter_holder, board_rail,
+from .parts import (adapter_plate, baffle_ring, ball_joint_plate, beamsplitter_holder, board_rail,
                     camera_clamp, camera_sleeve, chip_holder, projector_bracket,
                     side_board_holder, stage_base, test_piece, tube_clamp)
 
@@ -30,7 +30,12 @@ PARTS = {
     "07_chip_holder": (chip_holder.build, chip_holder.PRINT_ROT),
     "08_stage_base": (stage_base.build, stage_base.PRINT_ROT),
     "09_side_board_holder": (side_board_holder.build, side_board_holder.PRINT_ROT),
+    "10_ball_joint_plate": (ball_joint_plate.plate, (0, 0, 0)),
+    "10_ball_joint_plates_x8": (ball_joint_plate.plates_x8, (0, 0, 0)),
+    "11_ball_alignment_disc": (ball_joint_plate.disc, (0, 0, 0)),
+    "11_ball_alignment_discs_x4": (ball_joint_plate.discs_x4, (0, 0, 0)),
 }
+BODIES = {"10_ball_joint_plates_x8": 8, "11_ball_alignment_discs_x4": 4}   # batch files: more than one body
 
 
 def on_bed(part, rot):
@@ -50,7 +55,7 @@ def main(names):
         export_stl(part, str(path), tolerance=0.01, angular_tolerance=0.1)
         export_step(part, str(ROOT / "step" / f"{name}.step"))
         mesh = trimesh.load(path)
-        good = mesh.is_watertight and mesh.is_winding_consistent and mesh.body_count == 1 and max(mesh.extents) <= 200
+        good = mesh.is_watertight and mesh.is_winding_consistent and mesh.body_count == BODIES.get(name, 1) and max(mesh.extents) <= 200
         ok &= good
         x, y, z = mesh.extents
         print(f"{'OK  ' if good else 'FAIL'} {name:30s} {x:6.1f} x {y:6.1f} x {z:5.1f} mm  {mesh.volume / 1000:6.1f} cm3")
