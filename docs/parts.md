@@ -54,12 +54,42 @@ Print one of each file unless the table gives a different quantity.
 | `07_chip_holder` | 1 | Holds the chip on the micro-manipulator. | Any |
 | `08_stage_base` | 1 | Locates the micro-manipulator stand below the objective. | Any |
 | `09_side_board_holder` | 1 | Holds the TI side board (HDMI) above the main board. | Any |
+| `10_ball_joint_plates_x8` | 1 | Eight ball joint plates of the micro-manipulator on one bed. Six are necessary. They replace the six plate PCBs. Not tested. | Any |
+| `11_ball_alignment_discs_x4` | 1 | Four ball alignment discs for the rod press tool. Two are necessary. They replace the disc PCBs. Not tested. | Any |
 
 "Any" means PLA or PETG of any colour.
 One 1 kg spool of matte black PETG is sufficient for all parts. This is the simplest selection.
 The printer bed must be 170 × 120 mm or larger.
 Parts in the light path must be black and opaque.
 Parts near the projector become warm. PLA can deform there.
+
+## Print files of the micro-manipulator
+
+These files are not in this repository. They are in the repository of the micro-manipulator project (MIT licence). Print them also.
+Quantities are from the project's bill of materials. See [RESOURCES.md](../RESOURCES.md).
+
+Folder: https://github.com/0x23/MicroManipulatorStepper/tree/main/construction/v4_3dprinting_stl
+
+| File | Qty | Function |
+|---|---|---|
+| `machine/BaseBlock.stl` | 1 | Body of the stage |
+| `machine/EndEffector.stl` | 1 | Moving platform. The chip holder attaches to it. |
+| `machine/MotorMount.stl` | 3 | Holds one motor |
+| `machine/MotorHorn.stl` | 3 | Arm on one motor shaft |
+| `machine/RubberBandCollet.stl` | 12 | Holds the stretch cord of one rod |
+| `tools/rod_length_setting_press/RodGrindingJigA.stl` | 1 | Tool. Used one time, to make the rods. |
+| `tools/rod_length_setting_press/RodGrindingJigB.stl` | 1 | Tool |
+| `tools/rod_length_setting_press/CaliperClamp.stl` | 2 | Tool |
+| `tools/rod_length_setting_press/RodCollet.stl` | 2 | Tool |
+| `tools/rod_length_setting_press/RodGuide.stl` | 1 | Tool |
+| `tools/rod_sharpener/BladeCarrier.stl` | 1 | Tool |
+| `tools/rod_sharpener/RodGuide.stl` | 1 | Tool. A different file from the other `RodGuide.stl`. |
+
+One more file is in a different repository:
+
+| File | Qty | Function |
+|---|---|---|
+| [`demoStandV1.stl`](https://github.com/koalazak/MicroManipulatorStepper/tree/stl-extras/construction/v4_3dprinting_stl/extras) | 1 | Stand of the stage. `08_stage_base` holds it. |
 
 ## Print settings
 
@@ -69,7 +99,7 @@ Parts near the projector become warm. PLA can deform there.
 | Layer height | 0.2 mm |
 | Walls | 4 |
 | Infill | 40 % |
-| Supports | Off |
+| Supports | Off. For `03_projector_bracket` only: on, from the build plate only. |
 | Orientation | As opened. Do not turn the parts. |
 
 These settings are recommendations. They are not tested on a printer.
