@@ -67,7 +67,9 @@ Measured by the user on the complete unit, with a ruler (2026-11-20):
 
 - Black base cover: 180 long, 122 wide. The lens centre is 61 from each side.
 - Lens centre to the top of the black base: approximately 25.
-- The two wide cables to the mirror chip: approximately 150 or a little more.
+- The two wide cables to the mirror chip: 190 (measured 2026-11-23, off the projector).
+- Thin flat cable with the blue end (actuator): 140.
+- Red, green and blue wire bundles to the LEDs: approximately 190.
 - LED heat sink behind the front grille: approximately 20 × 20 × 20.
 - Temperature at the lens face [U]. PETG or ASA is specified there.
 
@@ -143,7 +145,7 @@ LED block of the open projector (2026-11-22). R = measured by the user with a ru
 | Item | Who | Status |
 |---|---|---|
 | Printer | User | Not selected. Minimum bed 170 × 120. |
-| Reach of the projector cables to the main board | User | Not published. Slide the rails to the correct height at assembly. |
+| Reach of the projector cables to the main board | User | Put the edge of the main board with the two wide sockets to the right. Straight distance to the wide sockets: 90 and 135 [E]; the cables are 190. Each wide cable makes one gentle diagonal turn; do not crease it. The thin actuator cable (140) is probably too short: Hacker Fab leaves it disconnected at the projector. Slide the rails to the correct height at assembly. |
 | Screws at the projector lens face | User | Use the four screws that held the lens mount, if they are long enough for the 6 mm plate. If not, try M2 × 8, then M2 × 10. |
 | Lens mount of the projector | User | Make sure that it comes off with its four screws. The model shows this, the real unit is not examined. |
 | UV LED board | User | Hacker Fab replaces the blue LED with a UV LED board. The board is not in the inventory. Files: https://github.com/hacker-fab/stepper-v2-led |
