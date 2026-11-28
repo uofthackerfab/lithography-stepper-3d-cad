@@ -84,22 +84,22 @@ For printing, start with [parts.md](docs/parts.md): it lists quantities, materia
 
 This table lists the parts of the stepper itself. It does not list the parts of the micro-manipulator stage; those are in [parts.md](docs/parts.md).
 
-| # | Part | File | Qty |
-|---|---|---|---|
-| 1 | Test piece (optional, print first) | [`stl/00_test_piece.stl`](stl/00_test_piece.stl) | 1 |
-| 2 | Beamsplitter holder, base | [`stl/01_beamsplitter_holder_base.stl`](stl/01_beamsplitter_holder_base.stl) | 1 |
-| 3 | Beamsplitter holder, cover | [`stl/01_beamsplitter_holder_cover.stl`](stl/01_beamsplitter_holder_cover.stl) | 1 |
-| 4 | Camera clamp, block | [`stl/02_camera_clamp_block.stl`](stl/02_camera_clamp_block.stl) | 1 |
-| 5 | Camera clamp, cap | [`stl/02_camera_clamp_cap.stl`](stl/02_camera_clamp_cap.stl) | 1 |
-| 6 | Camera sleeve | [`stl/02_camera_sleeve.stl`](stl/02_camera_sleeve.stl) | 1 |
-| 7 | Adapter plate | [`stl/03_adapter_plate.stl`](stl/03_adapter_plate.stl) | 1 |
-| 8 | Projector bracket (support from the build plate) | [`stl/03_projector_bracket.stl`](stl/03_projector_bracket.stl) | 1 |
-| 9 | Tube clamp | [`stl/04_tube_clamp.stl`](stl/04_tube_clamp.stl) | 1 |
-| 10 | Baffle ring (optional) | [`stl/05_baffle_ring.stl`](stl/05_baffle_ring.stl) | 4 |
-| 11 | Board rail | [`stl/06_board_rail.stl`](stl/06_board_rail.stl) | 2 |
-| 12 | Chip holder | [`stl/07_chip_holder.stl`](stl/07_chip_holder.stl) | 1 |
-| 13 | Stage base | [`stl/08_stage_base.stl`](stl/08_stage_base.stl) | 1 |
-| 14 | Side board holder | [`stl/09_side_board_holder.stl`](stl/09_side_board_holder.stl) | 1 |
+| # | Picture | Part | File | Qty |
+|---|---|---|---|---|
+| 1 | <img src="docs/img/00_test_piece.png" alt="Test piece" width="160"> | Test piece (optional, print first) | [`stl/00_test_piece.stl`](stl/00_test_piece.stl) | 1 |
+| 2 | <img src="docs/img/01_beamsplitter_holder_base.png" alt="Beamsplitter holder, base" width="160"> | Beamsplitter holder, base | [`stl/01_beamsplitter_holder_base.stl`](stl/01_beamsplitter_holder_base.stl) | 1 |
+| 3 | <img src="docs/img/01_beamsplitter_holder_cover.png" alt="Beamsplitter holder, cover" width="160"> | Beamsplitter holder, cover | [`stl/01_beamsplitter_holder_cover.stl`](stl/01_beamsplitter_holder_cover.stl) | 1 |
+| 4 | <img src="docs/img/02_camera_clamp_block.png" alt="Camera clamp, block" width="160"> | Camera clamp, block | [`stl/02_camera_clamp_block.stl`](stl/02_camera_clamp_block.stl) | 1 |
+| 5 | <img src="docs/img/02_camera_clamp_cap.png" alt="Camera clamp, cap" width="160"> | Camera clamp, cap | [`stl/02_camera_clamp_cap.stl`](stl/02_camera_clamp_cap.stl) | 1 |
+| 6 | <img src="docs/img/02_camera_sleeve.png" alt="Camera sleeve" width="160"> | Camera sleeve | [`stl/02_camera_sleeve.stl`](stl/02_camera_sleeve.stl) | 1 |
+| 7 | <img src="docs/img/03_adapter_plate.png" alt="Adapter plate" width="160"> | Adapter plate | [`stl/03_adapter_plate.stl`](stl/03_adapter_plate.stl) | 1 |
+| 8 | <img src="docs/img/03_projector_bracket.png" alt="Projector bracket" width="160"> | Projector bracket (support from the build plate) | [`stl/03_projector_bracket.stl`](stl/03_projector_bracket.stl) | 1 |
+| 9 | <img src="docs/img/04_tube_clamp.png" alt="Tube clamp" width="160"> | Tube clamp | [`stl/04_tube_clamp.stl`](stl/04_tube_clamp.stl) | 1 |
+| 10 | <img src="docs/img/05_baffle_ring.png" alt="Baffle ring" width="160"> | Baffle ring (optional) | [`stl/05_baffle_ring.stl`](stl/05_baffle_ring.stl) | 4 |
+| 11 | <img src="docs/img/06_board_rail.png" alt="Board rail" width="160"> | Board rail | [`stl/06_board_rail.stl`](stl/06_board_rail.stl) | 2 |
+| 12 | <img src="docs/img/07_chip_holder.png" alt="Chip holder" width="160"> | Chip holder | [`stl/07_chip_holder.stl`](stl/07_chip_holder.stl) | 1 |
+| 13 | <img src="docs/img/08_stage_base.png" alt="Stage base" width="160"> | Stage base | [`stl/08_stage_base.stl`](stl/08_stage_base.stl) | 1 |
+| 14 | <img src="docs/img/09_side_board_holder.png" alt="Side board holder" width="160"> | Side board holder | [`stl/09_side_board_holder.stl`](stl/09_side_board_holder.stl) | 1 |
 
 14 files, 18 pieces. Without the two optional parts: 12 files, 13 pieces.
 
